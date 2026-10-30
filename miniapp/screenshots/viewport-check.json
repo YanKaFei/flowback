@@ -1,0 +1,126 @@
+{
+  "method": "Puppeteer 23 + Chrome, Taro H5 preview of the same pages; deviceScaleFactor 2; fullPage screenshots for 375/390/430 and top/bottom at 320.",
+  "summary": {
+    "horizontalOverflow": false,
+    "testedWidths": [
+      320,
+      375,
+      390,
+      430
+    ],
+    "verticalScrollNeeded": "320px only; long content scrolls inside the Taro page container while the fixed bottom bar stays visible."
+  },
+  "pages": [
+    {
+      "page": "import",
+      "results": [
+        {
+          "width": 320,
+          "scrollWidth": 320,
+          "viewportWidth": 320,
+          "contentHeight": 737,
+          "viewportHeight": 568,
+          "verticalScroll": true
+        },
+        {
+          "width": 375,
+          "scrollWidth": 375,
+          "viewportWidth": 375,
+          "contentHeight": 812,
+          "viewportHeight": 812,
+          "verticalScroll": false
+        },
+        {
+          "width": 390,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "contentHeight": 844,
+          "viewportHeight": 844,
+          "verticalScroll": false
+        },
+        {
+          "width": 430,
+          "scrollWidth": 430,
+          "viewportWidth": 430,
+          "contentHeight": 932,
+          "viewportHeight": 932,
+          "verticalScroll": false
+        }
+      ]
+    },
+    {
+      "page": "review",
+      "results": [
+        {
+          "width": 320,
+          "scrollWidth": 320,
+          "viewportWidth": 320,
+          "contentHeight": 688,
+          "viewportHeight": 568,
+          "verticalScroll": true
+        },
+        {
+          "width": 375,
+          "scrollWidth": 375,
+          "viewportWidth": 375,
+          "contentHeight": 812,
+          "viewportHeight": 812,
+          "verticalScroll": false
+        },
+        {
+          "width": 390,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "contentHeight": 844,
+          "viewportHeight": 844,
+          "verticalScroll": false
+        },
+        {
+          "width": 430,
+          "scrollWidth": 430,
+          "viewportWidth": 430,
+          "contentHeight": 932,
+          "viewportHeight": 932,
+          "verticalScroll": false
+        }
+      ]
+    },
+    {
+      "page": "tasks",
+      "results": [
+        {
+          "width": 320,
+          "scrollWidth": 320,
+          "viewportWidth": 320,
+          "contentHeight": 763,
+          "viewportHeight": 568,
+          "verticalScroll": true
+        },
+        {
+          "width": 375,
+          "scrollWidth": 375,
+          "viewportWidth": 375,
+          "contentHeight": 812,
+          "viewportHeight": 812,
+          "verticalScroll": false
+        },
+        {
+          "width": 390,
+          "scrollWidth": 390,
+          "viewportWidth": 390,
+          "contentHeight": 844,
+          "viewportHeight": 844,
+          "verticalScroll": false
+        },
+        {
+          "width": 430,
+          "scrollWidth": 430,
+          "viewportWidth": 430,
+          "contentHeight": 932,
+          "viewportHeight": 932,
+          "verticalScroll": false
+        }
+      ]
+    }
+  ]
+}

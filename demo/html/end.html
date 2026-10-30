@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1920px;height:1080px;background:#1B1C1E;color:#F8F6F1;font-family:"Hiragino Sans GB","PingFang SC","STHeiti",sans-serif}
+  .stage{position:relative;width:1920px;height:1080px;padding:92px 110px;overflow:hidden}
+  .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(180deg,black,transparent 80%)}
+  .top{position:relative;display:flex;justify-content:space-between;align-items:center}
+  .brand{display:flex;align-items:center;gap:18px}
+  .mark{width:54px;height:54px;border-radius:16px;background:#C9F24E;position:relative}
+  .mark:before{content:"";position:absolute;left:15px;top:12px;width:22px;height:29px;border-left:5px solid #1B1C1E;border-top:5px solid #1B1C1E}
+  .mark:after{content:"";position:absolute;left:15px;top:25px;width:14px;border-top:5px solid #1B1C1E}
+  .brand b{display:block;font-size:28px;letter-spacing:-.4px}
+  .brand span{display:block;margin-top:5px;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.24em;color:rgba(255,255,255,.45)}
+  .pill{font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;background:#C9F24E;color:#1B1C1E;font-weight:700;border-radius:99px;padding:11px 17px}
+  .hero{position:relative;margin-top:100px;display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:end}
+  .eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.2em;color:rgba(255,255,255,.38)}
+  h1{margin-top:24px;font-size:82px;line-height:1.06;letter-spacing:-3.5px}
+  h1 em{font-style:normal;color:#C9F24E}
+  .sub{margin-top:28px;max-width:720px;font-size:20px;line-height:1.75;color:rgba(255,255,255,.55)}
+  .metrics{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .metric{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);border-radius:14px;padding:22px 24px}
+  .metric b{display:block;font-size:42px;letter-spacing:-1.5px;color:#C9F24E;font-weight:650}
+  .metric span{display:block;margin-top:9px;font-size:12px;color:rgba(255,255,255,.48);letter-spacing:.05em}
+  .url{margin-top:54px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:30px}
+  .url .left{font-size:15px;color:rgba(255,255,255,.45)}
+  .url .left b{display:block;color:#F8F6F1;font-size:26px;letter-spacing:-.5px;margin-bottom:7px}
+  .url code{font-family:ui-monospace,Menlo,monospace;font-size:15px;color:#C9F24E}
+  .footer{position:absolute;left:110px;right:110px;bottom:54px;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.17em;color:rgba(255,255,255,.25);display:flex;justify-content:space-between}
+</style></head>
+<body><div class="stage">
+  <div class="grid"></div>
+  <div class="top"><div class="brand"><div class="mark"></div><div><b>FlowBack</b><span>ECHO · 回响</span></div></div><div class="pill">DEMO READY — REAL AI</div></div>
+  <div class="hero">
+    <div>
+      <div class="eyebrow">VERIFIED WITH DEEPSEEK FLASH</div>
+      <h1>聊天，<br>从此<em>有着落</em>。</h1>
+      <p class="sub">真实截图、真实模型、真实 SQLite 持久化。任务、风险、原文引用与状态变化，全部可追溯。</p>
+    </div>
+    <div class="metrics">
+      <div class="metric"><b>7/7</b><span>真实夹具验收通过</span></div>
+      <div class="metric"><b>100%</b><span>任务 F1 / 引用核验</span></div>
+      <div class="metric"><b>17,304</b><span>真实调用 Tokens</span></div>
+      <div class="metric"><b>2.7s</b><span>平均 AI 推理耗时</span></div>
+    </div>
+  </div>
+  <div class="url">
+    <div class="left"><b>让每一句话，都有着落。</b>FlowBack · 回响 · Local-first AI task board</div>
+    <code>127.0.0.1:4317</code>
+  </div>
+  <div class="footer"><span>PRODUCT DEMO / REAL AI / 2026</span><span>THANK YOU</span></div>
+</div></body></html>

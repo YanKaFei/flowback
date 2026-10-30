@@ -1,0 +1,671 @@
+{
+  "status": "completed",
+  "startedAt": "2026-10-30T06:28:00.851Z",
+  "baseUrl": "http://127.0.0.1:4317",
+  "model": "deepseek-flash",
+  "config": {
+    "configured": true,
+    "model": "deepseek-flash",
+    "baseUrl": "https://api.deepseek.com",
+    "vision": true,
+    "jsonMode": true,
+    "thinking": "disabled",
+    "maxTokens": 8192,
+    "timeoutMs": 45000,
+    "imageDetail": "high"
+  },
+  "metrics": {
+    "fixtures": 7,
+    "imageFixtures": 2,
+    "pass": 7,
+    "partial": 0,
+    "fail": 0,
+    "requiredExpected": 13,
+    "requiredMatched": 13,
+    "actualTotal": 13,
+    "matchedActual": 13,
+    "taskPrecision": 1,
+    "taskRecall": 1,
+    "taskF1": 1,
+    "riskExpected": 7,
+    "riskMatched": 7,
+    "riskRecall": 1,
+    "quoteTotal": 21,
+    "quoteVerified": 21,
+    "quoteRate": 1,
+    "avgMs": 2702,
+    "medianMs": 2569,
+    "avgAiMs": 2684,
+    "apiCalls": 7,
+    "tokenTotals": {
+      "promptTokens": 13956,
+      "completionTokens": 3348,
+      "totalTokens": 17304,
+      "cachedTokens": 12667,
+      "reasoningTokens": 0,
+      "known": true
+    }
+  },
+  "fixtures": [
+    {
+      "ok": true,
+      "fixture": "01-normal-text",
+      "label": "正常任务对话",
+      "kind": "text",
+      "status": "pass",
+      "httpStatus": 201,
+      "mode": "ai",
+      "model": "deepseek-flash",
+      "elapsedMs": 3277,
+      "aiElapsedMs": 3245,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 1764,
+        "completionTokens": 669,
+        "totalTokens": 2433,
+        "cachedTokens": 1536,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 3,
+      "countInRange": true,
+      "expectedTaskCount": "3–4",
+      "matches": [
+        {
+          "expected": "文案",
+          "actual": "更新首页文案",
+          "required": true
+        },
+        {
+          "expected": "配图/主视觉",
+          "actual": "交付主视觉配图",
+          "required": true
+        },
+        {
+          "expected": "埋点",
+          "actual": "编写并发送埋点方案",
+          "required": true
+        },
+        {
+          "expected": "落地页",
+          "actual": null,
+          "required": false
+        }
+      ],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [],
+      "quoteTotal": 3,
+      "quoteVerified": 3,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": "周宁分配落地页改版三项工作：李萌周三前更新首页文案，阿泽周五交付主视觉配图，周宁今天下班前发埋点方案。均为相对时间，需确认具体日期。",
+      "warnings": [
+        "所有截止时间均为相对说法，未换算为具体日期，需人工确认。"
+      ],
+      "tasks": [
+        {
+          "title": "更新首页文案",
+          "owner": "李萌",
+          "dueLabel": "周三前",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "首页文案请李萌周三前更新。"
+        },
+        {
+          "title": "交付主视觉配图",
+          "owner": "阿泽",
+          "dueLabel": "周五",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "主视觉配图阿泽周五交付。"
+        },
+        {
+          "title": "编写并发送埋点方案",
+          "owner": "周宁",
+          "dueLabel": "今天下班前",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "埋点方案我来写，今天下班前发群里。"
+        }
+      ],
+      "risks": [],
+      "transcriptLength": 132
+    },
+    {
+      "ok": true,
+      "fixture": "02-due-conflict-text",
+      "label": "时间冲突",
+      "kind": "text",
+      "status": "pass",
+      "httpStatus": 201,
+      "mode": "ai",
+      "model": "deepseek-flash",
+      "elapsedMs": 2569,
+      "aiElapsedMs": 2552,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 1722,
+        "completionTokens": 402,
+        "totalTokens": 2124,
+        "cachedTokens": 1536,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 2,
+      "countInRange": true,
+      "expectedTaskCount": "2–3",
+      "matches": [
+        {
+          "expected": "初稿",
+          "actual": "提交主视觉海报初稿",
+          "required": true
+        },
+        {
+          "expected": "最终",
+          "actual": "提交主视觉海报最终稿",
+          "required": true
+        },
+        {
+          "expected": "修改/截止",
+          "actual": null,
+          "required": false
+        }
+      ],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [
+        "due_conflict"
+      ],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [],
+      "quoteTotal": 3,
+      "quoteVerified": 3,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": "识别到主视觉海报初稿与最终稿两项任务，负责人均为小王；最终稿截止时间由周五改为周四，存在截止时间冲突需确认。",
+      "warnings": [
+        "“周五”“周四”均为相对日期，未给出具体日历日期，需人工确认。",
+        "小王回复“收到”仅为知悉，不能视为任务完成。"
+      ],
+      "tasks": [
+        {
+          "title": "提交主视觉海报初稿",
+          "owner": "小王",
+          "dueLabel": "周五",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "主视觉海报由小王负责，周五交初稿。"
+        },
+        {
+          "title": "提交主视觉海报最终稿",
+          "owner": "小王",
+          "dueLabel": "周四",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "主视觉海报最终稿改成周四交，老板要提前看。"
+        }
+      ],
+      "risks": [
+        {
+          "type": "due_conflict",
+          "title": "最终稿截止时间前后不一致",
+          "severity": "medium",
+          "quote": "主视觉海报最终稿改成周四交，老板要提前看。"
+        }
+      ],
+      "transcriptLength": 75
+    },
+    {
+      "ok": true,
+      "fixture": "03-owner-gap-text",
+      "label": "无人负责 + 日期缺失",
+      "kind": "text",
+      "status": "pass",
+      "httpStatus": 201,
+      "mode": "ai",
+      "model": "deepseek-flash",
+      "elapsedMs": 2565,
+      "aiElapsedMs": 2550,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 1715,
+        "completionTokens": 506,
+        "totalTokens": 2221,
+        "cachedTokens": 1536,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 2,
+      "countInRange": true,
+      "expectedTaskCount": "2–3",
+      "matches": [
+        {
+          "expected": "场地/场地方",
+          "actual": "联系场地方确认舞台尺寸和入场时间",
+          "required": true
+        },
+        {
+          "expected": "舞台",
+          "actual": "提交舞台设计方案",
+          "required": true
+        },
+        {
+          "expected": "入场/尺寸",
+          "actual": null,
+          "required": false
+        }
+      ],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [
+        "owner_gap",
+        "due_unclear"
+      ],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [],
+      "quoteTotal": 4,
+      "quoteVerified": 4,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": "识别到两项任务：联系场地方确认舞台尺寸和入场时间（无人负责），以及林悦负责舞台设计方案（周三前）。主要风险是场地对接无人负责、截止时间不明确。",
+      "warnings": [
+        "舞台设计方案的“周三前”为相对日期，未给出具体日历日期，需人工确认对应日期"
+      ],
+      "tasks": [
+        {
+          "title": "联系场地方确认舞台尺寸和入场时间",
+          "owner": null,
+          "dueLabel": null,
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "发布会场地还没人对接，需要联系场地方确认舞台尺寸和入场时间。"
+        },
+        {
+          "title": "提交舞台设计方案",
+          "owner": "林悦",
+          "dueLabel": "周三前",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "舞台设计我来负责，周三前给方案。"
+        }
+      ],
+      "risks": [
+        {
+          "type": "owner_gap",
+          "title": "场地对接无人负责",
+          "severity": "high",
+          "quote": "发布会场地还没人对接，需要联系场地方确认舞台尺寸和入场时间。"
+        },
+        {
+          "type": "due_unclear",
+          "title": "场地对接无截止时间",
+          "severity": "medium",
+          "quote": "发布会场地还没人对接，需要联系场地方确认舞台尺寸和入场时间。"
+        }
+      ],
+      "transcriptLength": 71
+    },
+    {
+      "ok": true,
+      "fixture": "04-decision-change-text",
+      "label": "决策变更",
+      "kind": "text",
+      "status": "pass",
+      "httpStatus": 201,
+      "mode": "ai",
+      "model": "deepseek-flash",
+      "elapsedMs": 2528,
+      "aiElapsedMs": 2511,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 1744,
+        "completionTokens": 402,
+        "totalTokens": 2146,
+        "cachedTokens": 1536,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 1,
+      "countInRange": true,
+      "expectedTaskCount": "1–2",
+      "matches": [
+        {
+          "expected": "登录",
+          "actual": "实现微信登录并纳入下周评审",
+          "required": true
+        },
+        {
+          "expected": "微信/评审",
+          "actual": null,
+          "required": false
+        }
+      ],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [
+        "decision_unconfirmed"
+      ],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [
+        "owner_gap"
+      ],
+      "quoteTotal": 3,
+      "quoteVerified": 3,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": "登录方式决策前后冲突：先定只做手机号登录，后改为加上微信登录并下周一起评审。仅识别到一项待办（微信登录），存在决策未确认风险。",
+      "warnings": [
+        "决策由“不做微信登录”改为“加上微信登录”，旧方案已作废，未输出为任务",
+        "“下周”为相对时间，未换算为具体日期"
+      ],
+      "tasks": [
+        {
+          "title": "实现微信登录并纳入下周评审",
+          "owner": null,
+          "dueLabel": "下周",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "inferred",
+          "quote": "等等，老板刚说还是加上微信登录，下周一起评审。"
+        }
+      ],
+      "risks": [
+        {
+          "type": "decision_unconfirmed",
+          "title": "登录方式决策前后冲突",
+          "severity": "high",
+          "quote": "登录页先保留手机号登录，这期不做微信登录。"
+        },
+        {
+          "type": "owner_gap",
+          "title": "微信登录无明确负责人",
+          "severity": "high",
+          "quote": "等等，老板刚说还是加上微信登录，下周一起评审。"
+        }
+      ],
+      "transcriptLength": 105
+    },
+    {
+      "ok": false,
+      "fixture": "05-chitchat-text",
+      "label": "无任务闲聊",
+      "kind": "text",
+      "status": "pass",
+      "httpStatus": 422,
+      "mode": null,
+      "elapsedMs": 987,
+      "aiElapsedMs": 975,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 1713,
+        "completionTokens": 51,
+        "totalTokens": 1764,
+        "cachedTokens": 1536,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 0,
+      "countInRange": true,
+      "expectedTaskCount": "0–0",
+      "matches": [],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [],
+      "quoteTotal": 0,
+      "quoteVerified": 0,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": null,
+      "warnings": [],
+      "tasks": [],
+      "risks": [],
+      "transcriptLength": 63
+    },
+    {
+      "ok": true,
+      "fixture": "06-image-normal",
+      "label": "截图：正常分工",
+      "kind": "image",
+      "status": "pass",
+      "httpStatus": 201,
+      "mode": "ai",
+      "model": "deepseek-flash",
+      "elapsedMs": 2797,
+      "aiElapsedMs": 2785,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 2609,
+        "completionTokens": 473,
+        "totalTokens": 3082,
+        "cachedTokens": 2432,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 2,
+      "countInRange": true,
+      "expectedTaskCount": "2–3",
+      "matches": [
+        {
+          "expected": "设计稿",
+          "actual": "提交新版活动页设计稿",
+          "required": true
+        },
+        {
+          "expected": "联调/前端",
+          "actual": "完成前端联调并进测试",
+          "required": true
+        },
+        {
+          "expected": "活动页",
+          "actual": null,
+          "required": false
+        }
+      ],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [],
+      "quoteTotal": 2,
+      "quoteVerified": 2,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": "识别到两项任务：小雨负责10月24日前交新版活动页设计稿，王可负责10月25日前进前端联调测试。小雨仅回复“收到”，无完成证据，任务均为待办；无负责人缺失或日期冲突。",
+      "warnings": [
+        "截图底部标注“仅用于 FlowBack 验收合成数据”，内容可能为测试数据。",
+        "截图解析基于图片理解，引用文字请对照原图人工核对。"
+      ],
+      "tasks": [
+        {
+          "title": "提交新版活动页设计稿",
+          "owner": "小雨",
+          "dueLabel": "10月24日前",
+          "dueDate": "2026-10-24",
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "新版活动页由小雨负责，10月24日前交设计稿。"
+        },
+        {
+          "title": "完成前端联调并进测试",
+          "owner": "王可",
+          "dueLabel": "10月25日前",
+          "dueDate": "2026-10-25",
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "前端联调我这边来，10月25日前进测试。"
+        }
+      ],
+      "risks": [],
+      "transcriptLength": 108
+    },
+    {
+      "ok": true,
+      "fixture": "07-image-conflict",
+      "label": "截图：冲突 + 无人负责",
+      "kind": "image",
+      "status": "pass",
+      "httpStatus": 201,
+      "mode": "ai",
+      "model": "deepseek-flash",
+      "elapsedMs": 4193,
+      "aiElapsedMs": 4173,
+      "attempts": 1,
+      "usage": {
+        "promptTokens": 2689,
+        "completionTokens": 845,
+        "totalTokens": 3534,
+        "cachedTokens": 2555,
+        "reasoningTokens": 0
+      },
+      "finishReason": "stop",
+      "providerModel": "deepseek-flash",
+      "actualTaskCount": 3,
+      "countInRange": true,
+      "expectedTaskCount": "2–4",
+      "matches": [
+        {
+          "expected": "最终",
+          "actual": "提交主视觉海报最终稿",
+          "required": true
+        },
+        {
+          "expected": "初稿",
+          "actual": "提交海报初稿",
+          "required": true
+        },
+        {
+          "expected": "场地",
+          "actual": "联系场地并确认入场时间",
+          "required": true
+        },
+        {
+          "expected": "入场/修改",
+          "actual": null,
+          "required": false
+        }
+      ],
+      "missingRequired": [],
+      "optionalMatched": [],
+      "unmatchedActual": [],
+      "fieldMismatches": [],
+      "riskHits": [
+        "due_conflict",
+        "owner_gap",
+        "due_unclear"
+      ],
+      "riskMissing": [],
+      "riskUnexpected": [],
+      "riskAllowedExtra": [],
+      "quoteTotal": 6,
+      "quoteVerified": 6,
+      "quoteMissing": [],
+      "completionViolations": [],
+      "receivedTask": [],
+      "error": null,
+      "summary": "识别到主视觉海报最终稿（周四，小王负责）与海报初稿（周五）两项交付，以及场地入场时间确认事项但无人负责。主要风险为场地联系负责人缺失、初稿负责人未明确、日期均为相对说法需确认。",
+      "warnings": [
+        "截图中“周四”“周五”均为相对日期，未给出具体日历日期，due_date 留空待人工确认。",
+        "海报初稿负责人系沿用前文推断，需审核者确认。",
+        "截图解析基于图片理解，引用文字请对照原图人工核对。"
+      ],
+      "tasks": [
+        {
+          "title": "提交主视觉海报最终稿",
+          "owner": "小王",
+          "dueLabel": "周四",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "主视觉海报最终稿周四交，小王负责。"
+        },
+        {
+          "title": "提交海报初稿",
+          "owner": "小王",
+          "dueLabel": "周五",
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "inferred",
+          "quote": "海报初稿改周五交。"
+        },
+        {
+          "title": "联系场地并确认入场时间",
+          "owner": null,
+          "dueLabel": null,
+          "dueDate": null,
+          "status": "todo",
+          "confidence": "explicit",
+          "quote": "场地还没人联系，得确认入场时间。"
+        }
+      ],
+      "risks": [
+        {
+          "type": "due_conflict",
+          "title": "「海报」截止时间不一致",
+          "severity": "high",
+          "quote": "主视觉海报最终稿周四交，小王负责。 / 海报初稿改周五交。"
+        },
+        {
+          "type": "owner_gap",
+          "title": "场地联系无人负责",
+          "severity": "high",
+          "quote": "场地还没人联系，得确认入场时间。"
+        },
+        {
+          "type": "due_unclear",
+          "title": "场地入场时间确认无截止时间",
+          "severity": "medium",
+          "quote": "场地还没人联系，得确认入场时间。"
+        }
+      ],
+      "transcriptLength": 113
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-ink;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background: #c9f24e;
+    color: #1b1c1e;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1b1c1e;
+    outline-offset: 2px;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.45;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d8d3c6;
+    border: 3px solid #f8f6f1;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #bdb7a8;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-2xs uppercase tracking-[0.18em] text-ink-muted;
+  }
+
+  .surface {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  .field-label {
+    @apply mb-1.5 flex items-center gap-1.5 text-2xs font-medium uppercase tracking-[0.08em] text-ink-muted;
+  }
+
+  .quote-mark {
+    @apply font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint;
+  }
+
+  .paper-grid {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(27, 28, 30, 0.055) 1px,
+      transparent 0
+    );
+    background-size: 22px 22px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

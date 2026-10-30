@@ -1,0 +1,44 @@
+{
+  "name": "flowback",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "description": "FlowBack（回响）— 把聊天记录与截图变成可审核、可执行、可追溯的任务看板",
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 4317",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1 -p 4317",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "acceptance": "node scripts/acceptance.mjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "next": "15.5.28",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "tailwind-merge": "^2.6.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.5.28",
+    "postcss": "^8.4.49",
+    "tailwindcss": "3.4.19",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

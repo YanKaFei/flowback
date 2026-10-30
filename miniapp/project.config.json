@@ -1,0 +1,17 @@
+{
+  "miniprogramRoot": "dist/",
+  "projectname": "flowback-mini",
+  "description": "FlowBack Mini — 微信小程序客户端",
+  "appid": "touristappid",
+  "compileType": "miniprogram",
+  "libVersion": "3.7.12",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "compileHotReLoad": true
+  },
+  "condition": {}
+}

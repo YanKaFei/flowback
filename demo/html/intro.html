@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1920px;height:1080px;background:#1B1C1E;color:#F8F6F1;font-family:"Hiragino Sans GB","PingFang SC","STHeiti",sans-serif}
+  .stage{position:relative;width:1920px;height:1080px;padding:86px 110px;overflow:hidden}
+  .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(90deg,black,transparent 78%)}
+  .top{position:relative;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:18px}
+  .mark{width:58px;height:58px;border-radius:17px;background:#C9F24E;position:relative;flex:none}
+  .mark:before{content:"";position:absolute;left:16px;top:13px;width:24px;height:31px;border-left:5px solid #1B1C1E;border-top:5px solid #1B1C1E}
+  .mark:after{content:"";position:absolute;left:16px;top:27px;width:15px;border-top:5px solid #1B1C1E}
+  .brand b{display:block;font-size:31px;letter-spacing:-.5px;font-weight:650}
+  .brand span{display:block;margin-top:6px;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.24em;color:rgba(255,255,255,.48)}
+  .tag{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.2em;color:#C9F24E;border:1px solid rgba(201,242,78,.45);border-radius:99px;padding:10px 18px}
+  .main{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center;height:810px;margin-top:28px}
+  .eyebrow{display:flex;align-items:center;gap:12px;font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.2em;color:rgba(255,255,255,.44)}
+  .eyebrow:before{content:"";width:8px;height:8px;background:#C9F24E}
+  h1{margin-top:30px;font-size:96px;line-height:1.08;letter-spacing:-4px;font-weight:650}
+  .hl{display:inline-block;position:relative;z-index:1}
+  .hl:before{content:"";position:absolute;z-index:-1;left:-4px;right:-6px;bottom:6px;height:30px;background:#C9F24E}
+  .sub{margin-top:38px;max-width:720px;font-size:22px;line-height:1.75;color:rgba(255,255,255,.62)}
+  .meta{margin-top:50px;display:flex;gap:28px;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.13em;color:rgba(255,255,255,.34)}
+  .meta b{color:rgba(255,255,255,.74);font-weight:500}
+  .stack{position:relative;height:560px}
+  .quote{position:absolute;right:0;top:30px;width:580px;border:1px solid rgba(255,255,255,.12);background:#24262A;border-radius:18px;padding:28px 30px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+  .quote .who{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,.5)}
+  .avatar{width:32px;height:32px;border-radius:50%;background:#C9F24E;color:#1B1C1E;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .quote p{margin-top:20px;font-size:24px;line-height:1.65;color:rgba(255,255,255,.88)}
+  .quote .chip{display:inline-block;margin-top:20px;background:#C9F24E;color:#1B1C1E;font-size:11px;font-weight:700;padding:6px 10px;border-radius:4px;letter-spacing:.08em}
+  .connector{position:absolute;right:146px;top:290px;width:2px;height:72px;background:linear-gradient(#C9F24E,transparent)}
+  .connector:before{content:"";position:absolute;left:-6px;top:-7px;width:14px;height:14px;border-radius:50%;background:#C9F24E;box-shadow:0 0 0 8px rgba(201,242,78,.13)}
+  .task{position:absolute;right:70px;bottom:34px;width:520px;background:#F8F6F1;color:#1B1C1E;border-radius:18px;padding:26px 28px;box-shadow:0 34px 90px rgba(0,0,0,.32)}
+  .task .row{display:flex;justify-content:space-between;align-items:start;gap:20px}
+  .task h2{font-size:25px;letter-spacing:-.5px}
+  .task .badge{white-space:nowrap;background:#FBEDE4;color:#B84315;border:1px solid #F0C9B3;border-radius:99px;padding:7px 11px;font-size:11px;font-weight:650}
+  .task .line{margin-top:18px;padding-top:17px;border-top:1px solid #E6E2D8;display:flex;gap:20px;font-size:13px;color:#74766D}
+  .task .line b{color:#1B1C1E;font-weight:600}
+  .footer{position:absolute;left:110px;right:110px;bottom:56px;display:flex;justify-content:space-between;font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.28)}
+  .lime{color:#C9F24E}
+</style></head>
+<body><div class="stage">
+  <div class="grid"></div>
+  <div class="top">
+    <div class="brand"><div class="mark"></div><div><b>FlowBack</b><span>ECHO · 回响</span></div></div>
+    <div class="tag">PRODUCT DEMO / REAL AI</div>
+  </div>
+  <div class="main">
+    <div>
+      <div class="eyebrow">CHAT → REVIEW → ACTION</div>
+      <h1>聊天结束的地方，<br><span class="hl">工作开始</span>。</h1>
+      <p class="sub">把聊天文字与截图，变成可审核、可执行、可追溯的任务。责任空缺、时间冲突、待确认决策，在开工之前一次说清。</p>
+      <div class="meta"><span><b>DeepSeek Vision</b> 真实截图理解</span><span><b>Human-in-the-loop</b> 人工确认</span><span><b>SQLite</b> 本地持久化</span></div>
+    </div>
+    <div class="stack">
+      <div class="quote">
+        <div class="who"><span class="avatar">林</span><span>林悦 · 15:22</span></div>
+        <p>主视觉海报最终稿周四交，小王负责。</p>
+        <div class="chip">原文引用 · 已定位</div>
+      </div>
+      <div class="connector"></div>
+      <div class="task">
+        <div class="row"><h2>海报最终稿</h2><span class="badge">时间冲突</span></div>
+        <div class="line"><span>负责人 <b>小王</b></span><span>截止 <b>周四</b></span><span>待确认 <b>1</b></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>FLOWBACK / PRODUCT DEMO / 2026</span><span class="lime">REAL AI · REAL PERSISTENCE</span></div>
+</div></body></html>

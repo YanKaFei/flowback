@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "model": "deepseek-flash",
+  "notes": "人工期望用于验收对照，不是唯一正确答案。required=true 的任务/风险计入召回率；optional 命中不计漏报；allowedRiskTypes 内的额外风险不视为误报。",
+  "fixtures": [
+    {
+      "id": "01-normal-text",
+      "label": "正常任务对话",
+      "kind": "text",
+      "projectName": "AI验收 01 正常分工",
+      "text": "产品周会 · 项目群\n周宁 09:02\n落地页改版的分工确认一下：首页文案请李萌周三前更新。\n李萌 09:05\n收到，周三前给文案。\n周宁 09:06\n主视觉配图阿泽周五交付。\n阿泽 09:07\n好的，周五给。\n周宁 09:08\n埋点方案我来写，今天下班前发群里。",
+      "expected": {
+        "taskCount": { "min": 3, "max": 4 },
+        "tasks": [
+          { "required": true, "matchAny": ["文案"], "owner": "李萌", "dueAny": ["周三"], "status": "todo" },
+          { "required": true, "matchAny": ["配图", "主视觉"], "owner": "阿泽", "dueAny": ["周五"], "status": "todo" },
+          { "required": true, "matchAny": ["埋点"], "owner": "周宁", "dueAny": ["今天"], "status": "todo" },
+          { "required": false, "matchAny": ["落地页"] }
+        ],
+        "requiredRiskTypes": [],
+        "allowedRiskTypes": ["due_unclear"],
+        "notes": "三条分工明确；相对日期不应被换算成臆造的具体年份。"
+      }
+    },
+    {
+      "id": "02-due-conflict-text",
+      "label": "时间冲突",
+      "kind": "text",
+      "projectName": "AI验收 02 时间冲突",
+      "text": "活动执行群\n林悦 10:02\n主视觉海报由小王负责，周五交初稿。\n小王 10:05\n收到\n林悦 10:12\n主视觉海报最终稿改成周四交，老板要提前看。",
+      "expected": {
+        "taskCount": { "min": 2, "max": 3 },
+        "tasks": [
+          { "required": true, "matchAny": ["初稿"], "owner": "小王", "dueAny": ["周五"], "status": "todo" },
+          { "required": true, "matchAny": ["最终"], "owner": "小王", "dueAny": ["周四"], "status": "todo" },
+          { "required": false, "matchAny": ["修改", "截止"] }
+        ],
+        "requiredRiskTypes": ["due_conflict"],
+        "allowedRiskTypes": [],
+        "notes": "必须输出 due_conflict；两次截止时间都要有原文引用；收到不是完成。"
+      }
+    },
+    {
+      "id": "03-owner-gap-text",
+      "label": "无人负责 + 日期缺失",
+      "kind": "text",
+      "projectName": "AI验收 03 责任空缺",
+      "text": "运营协作群\n陈默 11:00\n发布会场地还没人对接，需要联系场地方确认舞台尺寸和入场时间。\n林悦 11:03\n舞台设计我来负责，周三前给方案。",
+      "expected": {
+        "taskCount": { "min": 2, "max": 3 },
+        "tasks": [
+          { "required": true, "matchAny": ["场地", "场地方"], "owner": null, "dueAny": [] },
+          { "required": true, "matchAny": ["舞台"], "owner": "林悦", "dueAny": ["周三"] },
+          { "required": false, "matchAny": ["入场", "尺寸"] }
+        ],
+        "requiredRiskTypes": ["owner_gap", "due_unclear"],
+        "allowedRiskTypes": [],
+        "notes": "邀请方/群主等未被点名的人不能自动补成负责人。"
+      }
+    },
+    {
+      "id": "04-decision-change-text",
+      "label": "决策变更",
+      "kind": "text",
+      "projectName": "AI验收 04 决策变更",
+      "text": "产品评审群\n赵可 14:00\n登录页先保留手机号登录，这期不做微信登录。\n孙鸣 14:02\n明白，那这期就按手机号登录做。\n赵可 14:25\n等等，老板刚说还是加上微信登录，下周一起评审。\n孙鸣 14:27\n好",
+      "expected": {
+        "taskCount": { "min": 1, "max": 2 },
+        "tasks": [
+          { "required": true, "matchAny": ["登录"], "owner": null, "status": "todo" },
+          { "required": false, "matchAny": ["微信", "评审"] }
+        ],
+        "requiredRiskTypes": ["decision_unconfirmed"],
+        "allowedRiskTypes": ["owner_gap", "due_unclear"],
+        "notes": "前后决策冲突；不能把旧结论当成最终决定，也不能把好/明白当完成。"
+      }
+    },
+    {
+      "id": "05-chitchat-text",
+      "label": "无任务闲聊",
+      "kind": "text",
+      "projectName": "AI验收 05 无任务闲聊",
+      "text": "午饭群\n小周 12:01\n今天食堂排队好长\n阿May 12:02\n是啊，楼下新开的店也不错\n小周 12:03\n哈哈哈明天去试试",
+      "expected": {
+        "taskCount": { "min": 0, "max": 0 },
+        "tasks": [],
+        "requiredRiskTypes": [],
+        "allowedRiskTypes": [],
+        "notes": "纯闲聊必须 0 任务、0 风险；当前产品对 0 任务返回 422 NO_TASKS，视为正确拦截。"
+      }
+    },
+    {
+      "id": "06-image-normal",
+      "label": "截图：正常分工",
+      "kind": "image",
+      "projectName": "AI验收 06 截图正常分工",
+      "transcript": "设计协作群\n王可 10/20 09:10\n新版活动页由小雨负责，10月24日前交设计稿。\n小雨 10/20 09:12\n收到，10月24日前给。\n王可 10/20 09:15\n前端联调我这边来，10月25日前进测试。",
+      "images": ["images/06-chat-normal.png"],
+      "expected": {
+        "taskCount": { "min": 2, "max": 3 },
+        "tasks": [
+          { "required": true, "matchAny": ["设计稿"], "owner": "小雨", "dueAny": ["10月24", "10/24", "24日", "1024"], "status": "todo" },
+          { "required": true, "matchAny": ["联调", "前端"], "owner": "王可", "dueAny": ["10月25", "10/25", "25日", "1025"], "status": "todo" },
+          { "required": false, "matchAny": ["活动页"] }
+        ],
+        "requiredRiskTypes": [],
+        "allowedRiskTypes": ["due_unclear"],
+        "notes": "真实 PNG 截图输入；收到不是完成；日期通过 OCR 读取。"
+      }
+    },
+    {
+      "id": "07-image-conflict",
+      "label": "截图：冲突 + 无人负责",
+      "kind": "image",
+      "projectName": "AI验收 07 截图冲突与空缺",
+      "transcript": "活动执行群\n林悦 10/21 15:00\n主视觉海报最终稿周四交，小王负责。\n小王 10/21 15:02\n收到\n陈默 10/21 15:05\n场地还没人联系，得确认入场时间。\n林悦 10/21 15:07\n海报初稿改周五交。",
+      "images": ["images/07-chat-conflict.png"],
+      "expected": {
+        "taskCount": { "min": 2, "max": 4 },
+        "tasks": [
+          { "required": true, "matchAny": ["最终"], "owner": "小王", "dueAny": ["周四"] },
+          { "required": true, "matchAny": ["初稿"], "owner": "小王", "dueAny": ["周五"] },
+          { "required": true, "matchAny": ["场地"], "owner": null, "dueAny": [] },
+          { "required": false, "matchAny": ["入场", "修改"] }
+        ],
+        "requiredRiskTypes": ["due_conflict", "owner_gap", "due_unclear"],
+        "allowedRiskTypes": ["decision_unconfirmed"],
+        "notes": "截图同时包含时间冲突和无主任务；OCR 引用需逐字匹配合成对话。"
+      }
+    }
+  ]
+}

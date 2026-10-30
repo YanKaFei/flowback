@@ -1,0 +1,150 @@
+{
+  "timestamp": "2026-10-30T06:29:01Z",
+  "endpoint": "POST /api/analyze -> https://api.deepseek.com/chat/completions",
+  "model": "deepseek-flash",
+  "mode": "ai",
+  "thinking": "disabled",
+  "wall_ms": 4333,
+  "ai_elapsed_ms": 4313,
+  "finish_reason": "stop",
+  "usage": {
+    "promptTokens": 2689,
+    "completionTokens": 815,
+    "totalTokens": 3504,
+    "cachedTokens": 2555,
+    "reasoningTokens": 0
+  },
+  "attempts": 1,
+  "project_id": "prj_44141e5d3cf5435c8abf",
+  "extraction_id": "ext_226b83464b0649f5b3df",
+  "source_id": "src_6ea485ca34644eedaecc",
+  "source_image": "acceptance/images/07-chat-conflict.png",
+  "source_image_bytes": 100018,
+  "extracted_tasks": [
+    {
+      "id": "t1",
+      "title": "提交主视觉海报最终稿",
+      "owner": "小王",
+      "dueLabel": "周四",
+      "dueDate": null,
+      "dateStatus": "relative",
+      "priority": "high",
+      "status": "todo",
+      "confidence": "explicit",
+      "sourceQuote": "主视觉海报最终稿周四交，小王负责。",
+      "speaker": "林悦",
+      "evidenceQuote": null,
+      "needsConfirmation": true,
+      "note": "“收到”仅为知悉，不构成完成证据；周四为相对日期，未换算具体日期。"
+    },
+    {
+      "id": "t2",
+      "title": "提交海报初稿",
+      "owner": "小王",
+      "dueLabel": "周五",
+      "dueDate": null,
+      "dateStatus": "relative",
+      "priority": "medium",
+      "status": "todo",
+      "confidence": "inferred",
+      "sourceQuote": "海报初稿改周五交。",
+      "speaker": "林悦",
+      "evidenceQuote": null,
+      "needsConfirmation": true,
+      "note": "沿用前文负责人小王；初稿与最终稿为不同里程碑，分别保留。"
+    },
+    {
+      "id": "t3",
+      "title": "联系场地并确认入场时间",
+      "owner": null,
+      "dueLabel": null,
+      "dueDate": null,
+      "dateStatus": "unknown",
+      "priority": "high",
+      "status": "todo",
+      "confidence": "explicit",
+      "sourceQuote": "场地还没人联系，得确认入场时间。",
+      "speaker": "陈默",
+      "evidenceQuote": null,
+      "needsConfirmation": true,
+      "note": "原文明确场地尚无人联系，需指定负责人。"
+    }
+  ],
+  "extracted_risks": [
+    {
+      "id": "auto-conflict-t1-t2",
+      "type": "due_conflict",
+      "severity": "high",
+      "title": "「海报」截止时间不一致",
+      "detail": "《提交主视觉海报最终稿》截止 周四，《提交海报初稿》截止 周五。同一负责人（小王）下出现两个不同时间，需确认以哪条消息为准。",
+      "sourceQuote": "主视觉海报最终稿周四交，小王负责。 / 海报初稿改周五交。",
+      "taskRef": "t1",
+      "include": true
+    },
+    {
+      "id": "r1",
+      "type": "owner_gap",
+      "severity": "high",
+      "title": "场地联系无人负责",
+      "detail": "陈默指出场地还没人联系，需确认入场时间，但原文未指派负责人，需明确由谁联系场地并确认入场时间。",
+      "sourceQuote": "场地还没人联系，得确认入场时间。",
+      "taskRef": "t3",
+      "include": true
+    },
+    {
+      "id": "r2",
+      "type": "due_unclear",
+      "severity": "medium",
+      "title": "场地确认无截止时间",
+      "detail": "场地联系与入场时间确认完全没有时间信息，需补充截止时间。",
+      "sourceQuote": "场地还没人联系，得确认入场时间。",
+      "taskRef": "t3",
+      "include": true
+    }
+  ],
+  "review_edit": {
+    "task": "联系场地并确认入场时间",
+    "owner": "陈默",
+    "dueLabel": "11月2日前",
+    "dueDate": "2026-11-02"
+  },
+  "final_tasks": [
+    {
+      "id": "task_c4fa5b9bb7b84fab8e40",
+      "title": "提交主视觉海报最终稿",
+      "owner": "小王",
+      "dueLabel": "周四",
+      "dueDate": null,
+      "status": "doing",
+      "sourceQuote": "主视觉海报最终稿周四交，小王负责。"
+    },
+    {
+      "id": "task_dc98778afbc943ad84ba",
+      "title": "提交海报初稿",
+      "owner": "小王",
+      "dueLabel": "周五",
+      "dueDate": null,
+      "status": "todo",
+      "sourceQuote": "海报初稿改周五交。"
+    },
+    {
+      "id": "task_76413224516041edb4ef",
+      "title": "联系场地并确认入场时间",
+      "owner": "陈默",
+      "dueLabel": "11月2日前",
+      "dueDate": "2026-11-02",
+      "status": "todo",
+      "sourceQuote": "场地还没人联系，得确认入场时间。"
+    }
+  ],
+  "final_risks": [
+    {
+      "id": "risk_2856ea5427cd4d709dc8",
+      "type": "due_conflict",
+      "status": "resolved",
+      "title": "「海报」截止时间不一致",
+      "sourceQuote": "主视觉海报最终稿周四交，小王负责。 / 海报初稿改周五交。",
+      "resolutionNote": "R2 真实演示：确认以周四最终稿为准，初稿周五保留为历史记录。"
+    }
+  ]
+}

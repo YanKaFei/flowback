@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN" data-om-signature="off" data-composition-variables='[
+  {"id":"title","type":"string","label":"Title","default":"FlowBack"},
+  {"id":"tagline","type":"string","label":"Tagline","default":"FROM NOISE TO ACTION"},
+  {"id":"signal","type":"color","label":"Signal green","default":"#c9f24e"},
+  {"id":"paper","type":"color","label":"Paper","default":"#f5f1e8"},
+  {"id":"ink","type":"color","label":"Ink","default":"#191b18"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>FlowBack — From Noise to Action</title>
+<script src="vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Noto SC"; src: url("assets/fonts/NotoSansSC-500.woff") format("woff"); font-weight: 500; }
+@font-face { font-family: "Noto SC"; src: url("assets/fonts/NotoSansSC-700.woff") format("woff"); font-weight: 700; }
+@font-face { font-family: "Noto SC"; src: url("assets/fonts/NotoSansSC-900.woff") format("woff"); font-weight: 900; }
+@font-face { font-family: "Archivo Black"; src: url("assets/fonts/ArchivoBlack-400.woff") format("woff"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-var.woff") format("woff"); font-weight: 100 900; }
+:root {
+  --paper: #f5f1e8;
+  --ink: #191b18;
+  --graphite: #1b1f1c;
+  --signal: #c9f24e;
+  --orange: #d8642f;
+  --muted: #5b5e54;
+  --line: rgba(25,27,24,.16);
+  --mono: "SFMono-Regular", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: var(--graphite); }
+#film {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  font-family: "Noto SC", "Inter", sans-serif; font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+}
+#film:before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply; z-index: 4;
+}
+#film:after {
+  content: ""; position: absolute; left: 72px; right: 72px; top: 58px; bottom: 58px;
+  border: 1px solid rgba(25,27,24,.14); pointer-events: none; z-index: 3;
+}
+#dark { position: absolute; inset: 0; background: var(--graphite); opacity: 0; z-index: 1; }
+#wipe { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--graphite); z-index: 30; }
+.brand { position: absolute; left: 78px; top: 74px; z-index: 12; display: flex; align-items: center; gap: 13px; opacity: 0; }
+.brand .mark { width: 34px; height: 34px; background: var(--signal); color: var(--ink); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: "Archivo Black"; font-size: 19px; }
+.brand .word { font-family: "Archivo Black"; font-size: 18px; letter-spacing: -0.4px; }
+.brand .sub { font-family: var(--mono); font-size: 8px; letter-spacing: .2em; color: var(--muted); margin-top: 3px; }
+.meta-left, .meta-right { position: absolute; bottom: 76px; z-index: 12; font-family: var(--mono); font-size: 9px; letter-spacing: .15em; color: var(--muted); }
+.meta-left { left: 78px; }
+.meta-right { right: 78px; color: var(--ink); }
+.chapter { position: absolute; top: 77px; right: 80px; z-index: 12; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; color: var(--muted); opacity: 0; }
+.chapter b { color: var(--orange); font-weight: 500; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; }
+.rule { height: 2px; background: var(--signal); transform-origin: 0 50%; }
+.rule.orange { background: var(--orange); }
+
+/* noise */
+#s-noise { position: absolute; inset: 0; z-index: 5; background: var(--paper); }
+#cold-open { position: absolute; inset: 0; z-index: 8; overflow: hidden; }
+#cold-open .cold-1 { position: absolute; left: -26px; top: 26px; font-family: "Noto SC"; font-weight: 900; font-size: 330px; line-height: .9; color: var(--orange); letter-spacing: -10px; }
+#cold-open .cold-2 { opacity: 1; position: absolute; right: 58px; top: 244px; font-family: "Noto SC"; font-weight: 900; font-size: 150px; line-height: 1; color: var(--ink); letter-spacing: -4px; }
+#cold-open .cold-3 { opacity: 1; position: absolute; left: 560px; bottom: 104px; font-family: "Noto SC"; font-weight: 900; font-size: 176px; line-height: 1; color: #7e9c1b; letter-spacing: -5px; }
+#cold-open .cold-rule { position: absolute; left: 0; right: 0; top: 604px; height: 10px; background: var(--ink); transform-origin: 0 50%; transform: scaleX(1); }
+#cold-open .cold-meta { position: absolute; right: 72px; bottom: 120px; font-family: var(--mono); font-size: 11px; letter-spacing: .18em; color: var(--muted); }
+#scan { position: absolute; left: 0; width: 1920px; height: 2px; background: var(--signal); z-index: 9; opacity: 0; box-shadow: 0 0 18px rgba(201,242,78,.45); }
+#noise-cut { position: absolute; left: 0; right: 0; top: 356px; text-align: center; z-index: 6; pointer-events: none; }
+#noise-cut span { position: absolute; left: 0; right: 0; font-family: "Noto SC"; font-weight: 900; font-size: 236px; line-height: 1; letter-spacing: -10px; color: var(--ink); opacity: 0; }
+#noise-cut span:nth-child(2) { color: var(--orange); }
+#noise-cut span:nth-child(3) { color: #6e861b; font-size: 206px; }
+#noise-cut span:nth-child(4) { color: var(--orange); font-size: 190px; }
+#noise-flash { position: absolute; inset: 0; background: var(--ink); opacity: 0; z-index: 7; pointer-events: none; }
+#phone-screen-scan { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--signal); opacity: .18; z-index: 3; }
+#progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(25,27,24,.10); z-index: 26; }
+#progress i { display: block; width: 100%; height: 100%; background: var(--signal); transform-origin: 0 50%; transform: scaleX(0); }
+.chaos-item { position: absolute; white-space: nowrap; font-family: "Noto SC"; font-size: 27px; line-height: 1.15; opacity: 0; color: rgba(25,27,24,.74); }
+.chaos-item.orange { color: var(--orange); }
+.chaos-item.lime { color: #6d861c; }
+.chaos-item.ghost { color: rgba(25,27,24,.25); font-size: 19px; }
+.chaos-item.big { font-family: "Archivo Black"; font-size: 42px; letter-spacing: -1px; color: var(--ink); }
+#noise-title { position: absolute; left: 0; right: 0; top: 322px; text-align: center; font-family: "Archivo Black"; font-size: 236px; line-height: .8; letter-spacing: -10px; color: transparent; -webkit-text-stroke: 2px rgba(25,27,24,.35); opacity: 0; z-index: 7; }
+#noise-line { position: absolute; left: 108px; right: 108px; top: 746px; height: 1px; background: rgba(25,27,24,.3); transform-origin: 0 50%; opacity: 0; }
+#noise-caption { position: absolute; left: 108px; bottom: 128px; font-family: var(--mono); font-size: 11px; letter-spacing: .18em; color: var(--muted); opacity: 0; }
+#noise-caption b { color: var(--orange); font-weight: 500; }
+
+#s-import { position: absolute; inset: 0; z-index: 10; opacity: 0; }
+
+/* generic scene copy */
+.copy { position: absolute; left: 118px; top: 222px; width: 770px; z-index: 10; }
+.copy h1 { margin: 26px 0 0; font-family: "Archivo Black"; font-size: 88px; line-height: .94; letter-spacing: -4px; font-weight: 400; }
+.copy h1 em { font-style: normal; color: var(--orange); }
+.copy .cn { margin-top: 22px; font-family: "Noto SC"; font-size: 32px; line-height: 1.45; font-weight: 700; letter-spacing: -0.5px; }
+.copy p { margin: 24px 0 0; font-family: "Inter"; font-size: 19px; line-height: 1.55; color: #64675d; max-width: 660px; }
+.copy .micro { margin-top: 32px; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; color: var(--muted); }
+.copy .micro span { color: var(--orange); }
+
+/* phone */
+#phone { position: absolute; left: 1150px; top: 46px; width: 470px; height: 968px; z-index: 9; opacity: 0; }
+.phone-body { position: relative; width: 470px; height: 968px; border-radius: 64px; background: #171a17; box-shadow: 0 38px 90px rgba(25,27,24,.24), 0 0 0 1px rgba(255,255,255,.12) inset; padding: 27px 25px 29px; }
+.phone-body:before { content: ""; position: absolute; left: 50%; top: 14px; width: 90px; height: 22px; transform: translateX(-50%); border-radius: 0 0 15px 15px; background: #0d0f0d; z-index: 2; }
+.phone-screen { position: relative; width: 420px; height: 910px; border-radius: 43px; overflow: hidden; background: #f7f4ec; }
+.phone-screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.phone-screen:after { content: ""; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(25,27,24,.08); border-radius: 43px; }
+.phone-glow { position: absolute; left: 10px; right: 10px; bottom: -24px; height: 60px; background: var(--signal); filter: blur(42px); opacity: .12; z-index: -1; }
+.phone-side { position: absolute; right: -7px; top: 150px; width: 4px; height: 110px; border-radius: 4px; background: #333830; }
+.phone-side.lower { top: 290px; height: 70px; }
+.phone-label { position: absolute; left: 8px; bottom: -39px; font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: var(--muted); }
+.phone-label b { color: var(--orange); font-weight: 500; }
+.phone-tag { position: absolute; right: -8px; top: 54px; font-family: var(--mono); font-size: 8px; letter-spacing: .12em; color: var(--muted); transform: rotate(90deg); transform-origin: 100% 0; white-space: nowrap; }
+
+/* structure cards */
+#s-structure { position: absolute; inset: 0; z-index: 10; opacity: 0; }
+.struct-copy { left: 112px; top: 200px; width: 810px; }
+.struct-copy h1 { font-size: 76px; }
+#struct-cards { position: absolute; left: 112px; top: 570px; width: 820px; z-index: 11; }
+.struct-card { position: relative; height: 94px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 50px 1fr 150px; align-items: center; gap: 12px; opacity: 0; }
+.struct-card .no { font-family: var(--mono); font-size: 9px; color: var(--muted); }
+.struct-card .name { font-family: "Noto SC"; font-size: 24px; font-weight: 700; letter-spacing: -.5px; }
+.struct-card .name small { display: block; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; color: var(--muted); margin-top: 4px; }
+.struct-card .date { text-align: right; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.struct-card .date b { display: block; font-family: "Noto SC"; font-size: 17px; color: var(--ink); font-weight: 500; margin-top: 3px; }
+.struct-card .date b.warn { color: var(--orange); }
+.struct-card .source-line { position: absolute; left: 62px; bottom: 8px; font-family: var(--mono); font-size: 8px; color: var(--muted); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 580px; }
+.struct-card .bar { position: absolute; left: 62px; bottom: 0; width: 0; height: 1px; background: var(--signal); }
+
+/* risk */
+#s-risk { position: absolute; inset: 0; z-index: 14; color: #f5f1e8; opacity: 0; }
+#s-risk .hud { color: rgba(245,241,232,.78); }
+#s-risk .copy { left: 116px; top: 205px; width: 860px; }
+#s-risk .eyebrow { color: rgba(245,241,232,.7); }
+#s-risk h1 { color: #f5f1e8; font-size: 108px; }
+#s-risk h1 em { color: var(--orange); }
+#s-risk .cn { color: #f5f1e8; }
+#s-risk p { color: rgba(245,241,232,.74); }
+#s-risk .quote { margin-top: 30px; padding-left: 20px; border-left: 2px solid var(--orange); font-family: "Noto SC"; font-size: 25px; line-height: 1.55; color: #f5f1e8; opacity: 0; }
+#s-risk .quote small { display: block; margin-bottom: 7px; font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: rgba(245,241,232,.68); }
+.risk-tags { display: flex; gap: 9px; margin-top: 22px; }
+.risk-tag { padding: 8px 11px; border: 1px solid rgba(216,100,47,.65); color: #e58a5f; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; }
+#human-check { position: absolute; left: 116px; top: 770px; width: 820px; z-index: 15; opacity: 0; }
+#human-check .label { font-family: var(--mono); font-size: 9px; letter-spacing: .18em; color: var(--signal); }
+#human-check .value { margin-top: 9px; font-family: "Noto SC"; font-size: 28px; color: #f5f1e8; }
+#human-check .value b { color: var(--signal); font-weight: 700; }
+#human-check .line { width: 180px; height: 1px; background: var(--signal); margin-top: 13px; transform-origin: 0 50%; }
+#s-risk .phone-body { background: #111411; box-shadow: 0 38px 90px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.1) inset; }
+
+/* tasks */
+#s-tasks { position: absolute; inset: 0; z-index: 16; opacity: 0; }
+#s-tasks .copy { left: 112px; top: 190px; width: 810px; }
+#s-tasks h1 { font-size: 84px; }
+#done-count { position: absolute; left: 112px; top: 560px; margin: 0; font-family: "Archivo Black"; font-size: 100px; line-height: .8; letter-spacing: -4px; color: var(--ink); opacity: 0; }
+#done-count small { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--muted); display: block; margin-top: 16px; }
+#done-count em { font-style: normal; color: var(--orange); }
+.task-lines { position: absolute; left: 112px; top: 690px; width: 810px; }
+.task-line { display: grid; grid-template-columns: 32px 1fr 110px; gap: 12px; align-items: center; height: 64px; border-top: 1px solid var(--line); opacity: 0; }
+.task-line .box { width: 19px; height: 19px; border: 1px solid rgba(25,27,24,.4); border-radius: 50%; }
+.task-line.done .box { background: var(--signal); border-color: var(--signal); position: relative; }
+.task-line.done .box:after { content: "✓"; position: absolute; left: 4px; top: -2px; font-size: 13px; color: var(--ink); font-weight: 700; }
+.task-line .t { font-family: "Noto SC"; font-size: 21px; font-weight: 700; }
+.task-line.done .t { color: #8c8e84; text-decoration: line-through; }
+.task-line .o { font-family: var(--mono); font-size: 9px; color: var(--muted); text-align: right; }
+#task-progress { position: absolute; left: 112px; top: 888px; width: 810px; height: 3px; background: rgba(25,27,24,.13); }
+#task-progress i { display: block; width: 0; height: 100%; background: var(--signal); }
+#persist { position: absolute; left: 112px; bottom: 116px; font-family: var(--mono); font-size: 9px; letter-spacing: .12em; color: var(--muted); opacity: 0; }
+#persist b { color: var(--orange); font-weight: 500; }
+
+/* end */
+#s-end { position: absolute; inset: 0; z-index: 20; background: var(--graphite); color: #f5f1e8; opacity: 0; overflow: hidden; }
+#s-end .glow { position: absolute; width: 720px; height: 720px; border-radius: 50%; background: var(--signal); filter: blur(120px); opacity: .08; left: 900px; top: 120px; }
+#end-inner { position: absolute; left: 118px; right: 118px; top: 170px; }
+#end-inner .eyebrow { color: rgba(245,241,232,.68); }
+#end-word { margin-top: 25px; font-family: "Archivo Black"; font-size: 190px; line-height: .82; letter-spacing: -9px; color: #f5f1e8; }
+#end-cn { margin-top: 22px; font-family: "Noto SC"; font-size: 78px; font-weight: 900; letter-spacing: 6px; color: var(--signal); }
+#end-tag { margin-top: 50px; font-family: var(--mono); font-size: 16px; letter-spacing: .32em; color: #f5f1e8; }
+#end-rule { width: 0; height: 2px; background: var(--signal); margin-top: 18px; }
+#end-meta { position: absolute; left: 118px; bottom: 92px; font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: rgba(245,241,232,.72); line-height: 1.9; }
+#end-meta b { color: var(--signal); font-weight: 500; }
+#end-index { position: absolute; right: 118px; bottom: 92px; font-family: var(--mono); font-size: 9px; letter-spacing: .14em; color: rgba(245,241,232,.72); text-align: right; line-height: 1.9; }
+#end-index b { color: var(--signal); font-weight: 500; }
+#end-line { position: absolute; left: 118px; right: 118px; bottom: 170px; height: 1px; background: rgba(245,241,232,.18); }
+
+/* small camera-like data */
+.hud { position: absolute; z-index: 14; font-family: var(--mono); font-size: 8px; letter-spacing: .12em; color: var(--muted); opacity: 0; }
+.hud.a { left: 112px; top: 142px; }
+.hud.b { right: 112px; bottom: 142px; }
+.hud b { color: var(--orange); font-weight: 500; }
+.live-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--signal); margin-right: 7px; vertical-align: 2px; }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="flowback-r4" data-width="1920" data-height="1080">
+  <audio id="om-sound" src="assets/sound.wav" data-start="0" data-duration="45" data-track-index="8" data-volume="1"></audio>
+  <div id="dark"></div>
+  <div id="wipe"></div>
+  <div id="progress"><i></i></div>
+
+  <div class="brand" data-om-id="brand"><div class="mark">F</div><div><div class="word">FlowBack</div><div class="sub">ECHO / 回响</div></div></div>
+  <div class="meta-left">FLOWBACK — R4 / MOTION FILM</div>
+  <div class="meta-right" id="meta-right">45 SEC / 1920×1080 / 30 FPS</div>
+
+  <div class="chapter" id="ch-import"><b>01</b> / IMPORT</div>
+  <div class="chapter" id="ch-structure"><b>02</b> / STRUCTURE</div>
+  <div class="chapter" id="ch-risk"><b>03</b> / FRICTION</div>
+  <div class="chapter" id="ch-tasks"><b>04</b> / ACTION</div>
+  <div class="chapter" id="ch-end"><b>05</b> / FLOWBACK</div>
+
+  <!-- 00–04: noise -->
+  <section id="s-noise" data-om-id="noise">
+    <div id="chaos"></div>
+    <div id="cold-open">
+      <div class="cold-1">收到</div>
+      <div class="cold-2">周五?</div>
+      <div class="cold-3">改周四</div>
+      <div class="cold-rule"></div>
+      <div class="cold-meta">07:42 &nbsp;/&nbsp; NO OWNER &nbsp;/&nbsp; NO DATE</div>
+    </div>
+    <div id="scan"></div>
+    <div id="noise-cut"><span>改周四</span><span>没人</span><span>两个日期</span><span>谁负责?</span></div>
+    <div id="noise-flash"></div>
+    <div id="noise-title">NOISE</div>
+    <div id="noise-line"></div>
+    <div id="noise-caption"><b>NOISE</b> &nbsp; / &nbsp; 07:42 &nbsp; / &nbsp; UNREAD. UNOWNED. UNFINISHED.</div>
+  </section>
+
+  <!-- phone -->
+  <div id="phone" data-om-id="phone">
+    <div class="phone-glow"></div>
+    <div class="phone-tag">USER-SELECTED SCREENSHOT</div>
+    <div class="phone-body">
+      <div class="phone-side"></div><div class="phone-side lower"></div>
+      <div class="phone-screen">
+        <video id="v-import" src="assets/video/import.mp4" muted playsinline preload="auto" data-start="4.1" data-duration="7.9" data-media-start="0" data-playback-rate="1"></video>
+        <video id="v-review" src="assets/video/review.mp4" muted playsinline preload="auto" data-start="12" data-duration="12" data-media-start="0" data-playback-rate="0.45"></video>
+        <video id="v-risk" src="assets/video/review.mp4" muted playsinline preload="auto" data-start="24" data-duration="8" data-media-start="3.55" data-playback-rate="0.45"></video>
+        <video id="v-tasks" src="assets/video/tasks.mp4" muted playsinline preload="auto" data-start="32" data-duration="8" data-media-start="0" data-playback-rate="0.6"></video>
+        <div id="phone-screen-scan"></div>
+      </div>
+    </div>
+    <div class="phone-label">REAL H5 FLOW &nbsp; <b>/</b> &nbsp; DEV SESSION</div>
+  </div>
+
+  <!-- 04–12: import -->
+  <section id="s-import" data-om-id="import">
+    <div class="copy">
+      <div class="eyebrow">01 / Import &nbsp;·&nbsp; CHAT → STRUCTURE</div>
+      <h1>A conversation<br><em>ends here.</em></h1>
+      <div class="cn">把聊天，变成任务。</div>
+      <p>One screenshot. One deliberate action. FlowBack reads the conversation, so you don’t have to copy it into a project tool.</p>
+      <div class="micro"><span>●</span> ALBUM &nbsp;→&nbsp; SCREENSHOT &nbsp;→&nbsp; DEEPSEEK VISION</div>
+    </div>
+    <div class="hud a"><span class="live-dot"></span> REAL H5 / USER-SELECTED IMAGE</div>
+    <div class="hud b">01:07:14 &nbsp;·&nbsp; READING</div>
+  </section>
+
+  <!-- 12–20: structure -->
+  <section id="s-structure" data-om-id="structure">
+    <div class="copy struct-copy">
+      <div class="eyebrow">02 / Structure &nbsp;·&nbsp; MESSAGES → OBJECTS</div>
+      <h1>Noise,<br><em>re-ordered.</em></h1>
+      <div class="cn">每一句话，都有位置。</div>
+      <p>The model returns tasks, owners, dates and a source quote for every line. No hidden write. No silent assumption.</p>
+    </div>
+    <div id="struct-cards">
+      <div class="struct-card" data-card="0"><div class="no">01</div><div class="name">提交主视觉海报最终稿<small>TASK / OWNER / DUE</small></div><div class="date">周四<b class="warn">高风险</b></div><div class="bar"></div></div>
+      <div class="struct-card" data-card="1"><div class="no">02</div><div class="name">提交海报初稿<small>TASK / OWNER / DUE</small></div><div class="date">周五<b>小王</b></div><div class="bar"></div></div>
+      <div class="struct-card" data-card="2"><div class="no">03</div><div class="name">联系场地并确认入场时间<small>TASK / OWNER / DUE</small></div><div class="date">待定<b class="warn">未指派</b></div><div class="bar"></div></div>
+    </div>
+    <div class="hud a"><span class="live-dot"></span> REAL DEEPSEEK OUTPUT / AI DRAFT</div>
+    <div class="hud b">02 / 03 TASKS &nbsp;·&nbsp; 03 RISKS</div>
+  </section>
+
+  <!-- 20–32: friction -->
+  <section id="s-risk" data-om-id="friction">
+    <div class="copy">
+      <div class="eyebrow">03 / Friction &nbsp;·&nbsp; HUMAN CHECK</div>
+      <h1>TIME<br><em>CONFLICT.</em></h1>
+      <div class="cn">先别开工。先把冲突说清。</div>
+      <div class="risk-tags"><span class="risk-tag">DUE CONFLICT</span><span class="risk-tag">OWNER GAP</span><span class="risk-tag">SOURCE ATTACHED</span></div>
+      <p>Initial draft: Friday. Final: Thursday. The final is earlier than the draft. A date is not a detail.</p>
+      <div class="quote"><small>SOURCE / 逐字引用</small>“主视觉海报最终稿改成周四交，老板要提前看。”</div>
+    </div>
+    <div id="human-check"><div class="label">HUMAN CHECK / REVIEW EDIT</div><div class="value">场地负责人 <b>陈默</b> &nbsp;·&nbsp; 截止 <b>11月2日前</b></div><div class="line"></div></div>
+    <div class="hud a"><span class="live-dot"></span> REAL REVIEW FLOW / EDITABLE</div>
+    <div class="hud b">03 / NO SILENT WRITES</div>
+  </section>
+
+  <!-- 32–40: tasks -->
+  <section id="s-tasks" data-om-id="tasks">
+    <div class="copy">
+      <div class="eyebrow">04 / Action &nbsp;·&nbsp; REVIEW → EXECUTION</div>
+      <h1>Approved.<br><em>Now it moves.</em></h1>
+      <div class="cn">确认之后，才开始。</div>
+      <p>The review becomes a task list. Check a box. The state change is persisted — not just painted on the screen.</p>
+    </div>
+    <div id="done-count">1<em>/</em>3<small>DONE / REAL PROJECT STATE</small></div>
+    <div class="task-lines">
+      <div class="task-line done" data-task="0"><span class="box"></span><span class="t">提交主视觉海报最终稿</span><span class="o">小王 · 周四</span></div>
+      <div class="task-line" data-task="1"><span class="box"></span><span class="t">提交海报初稿</span><span class="o">小王 · 周五</span></div>
+      <div class="task-line" data-task="2"><span class="box"></span><span class="t">联系场地并确认入场时间</span><span class="o">陈默 · 11/02</span></div>
+    </div>
+    <div id="task-progress"><i></i></div>
+    <div id="persist"><b>STATE PERSISTED</b> &nbsp; / &nbsp; SQLITE · TASK EVENTS · REFRESH SAFE</div>
+    <div class="hud a"><span class="live-dot"></span> REAL TASK LIST / LOCAL PERSISTENCE</div>
+    <div class="hud b">04 / 01 OF 03 COMPLETE</div>
+  </section>
+
+  <!-- 40–45: end -->
+  <section id="s-end" data-om-id="end">
+    <div class="glow"></div>
+    <div id="end-inner">
+      <div class="eyebrow">05 / FLOWBACK &nbsp;·&nbsp; ECHO</div>
+      <div id="end-word">FlowBack</div>
+      <div id="end-cn">回响</div>
+      <div id="end-tag">FROM NOISE TO ACTION</div>
+      <div id="end-rule"></div>
+    </div>
+    <div id="end-line"></div>
+    <div id="end-meta"><b>REAL H5 FLOW</b> &nbsp;·&nbsp; REAL DEEPSEEK<br>HUMAN-IN-THE-LOOP &nbsp;·&nbsp; SQLITE</div>
+    <div id="end-index">FLOWBACK / R4<br>45 SEC &nbsp;·&nbsp; 2026</div>
+  </section>
+</div>
+
+<script src="vendor/om.js"></script>
+<script>
+  const V = OM.vars();
+  const tl = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+  const $ = (s) => document.querySelector(s);
+  // Cold open: the overload is already on screen at t=0. No blank poster frame.
+  tl.set("#cold-open", { opacity: 1 }, 0)
+    .fromTo("#cold-open .cold-1", { x: -34, opacity: 1 }, { x: 0, duration: .7, ease: "expo.out" }, 0)
+    .fromTo("#cold-open .cold-2", { x: 34 }, { x: 0, duration: .45, ease: "expo.out" }, .03)
+    .fromTo("#cold-open .cold-3", { y: 30 }, { y: 0, duration: .45, ease: "expo.out" }, .12)
+    .fromTo("#cold-open .cold-rule", { scaleX: 1 }, { scaleX: 1, duration: .01 }, 0)
+    .to("#cold-open", { opacity: 0, duration: .38, ease: "power2.in" }, .62)
+    .set("#cold-open", { display: "none" }, 1.0)
+    .fromTo("#scan", { y: -30, opacity: 0 }, { y: 1080, opacity: .8, duration: .8, ease: "none" }, .08)
+    .to("#scan", { opacity: 0, duration: .12 }, .9)
+    .to("#chaos", { x: -30, y: 18, duration: 1.1, ease: "sine.inOut" }, .1)
+    .to("#chaos", { x: 16, y: -10, duration: 1.1, ease: "sine.inOut" }, 1.2)
+    .to("#chaos", { x: -14, y: 12, duration: 1.0, ease: "sine.inOut" }, 2.3)
+    .to("#chaos", { scale: 1.1, duration: 2.2, ease: "none" }, 1.0)
+    .fromTo("#noise-cut span:nth-child(1)", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: .16, ease: "expo.out" }, 1.02)
+    .to("#noise-cut span:nth-child(1)", { opacity: 0, scale: .94, duration: .08 }, 1.36)
+    .fromTo("#noise-cut span:nth-child(2)", { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, duration: .14, ease: "expo.out" }, 1.5)
+    .to("#noise-cut span:nth-child(2)", { opacity: 0, x: -70, duration: .1 }, 1.84)
+    .fromTo("#noise-cut span:nth-child(3)", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .16, ease: "expo.out" }, 1.98)
+    .to("#noise-cut span:nth-child(3)", { opacity: 0, y: -20, duration: .1 }, 2.32)
+    .fromTo("#noise-cut span:nth-child(4)", { opacity: 0, scale: 1.18 }, { opacity: 1, scale: 1, duration: .14, ease: "expo.out" }, 2.4)
+    .to("#noise-cut span:nth-child(4)", { opacity: 0, scale: .9, duration: .12 }, 2.74)
+    .to("#noise-flash", { opacity: 0, duration: .05 }, 2.58);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+
+  // 00–04 — a burst of chat fragments, then a hard collapse.
+  const fragments = [
+    ["收到", 118, 116, 26, "ghost", -2], ["好的", 362, 190, 28, "", 1], ["周五交初稿", 724, 112, 32, "", -1],
+    ["最终稿改周四", 1118, 170, 34, "orange", 1], ["老板要提前看", 1444, 114, 24, "ghost", 2], ["场地没人对接", 168, 276, 30, "orange", 1],
+    ["舞台尺寸", 492, 330, 26, "ghost", -1], ["入场时间", 822, 280, 24, "", 2], ["周三前给方案", 1122, 306, 27, "lime", -2],
+    ["谁来负责？", 1460, 280, 32, "orange", 1], ["已读", 230, 440, 20, "ghost", 0], ["嗯", 406, 480, 32, "", -2],
+    ["尽快", 620, 414, 26, "ghost", 2], ["改一下", 816, 470, 26, "", -1], ["还没确认", 1044, 430, 30, "orange", 1],
+    ["10:02", 1320, 438, 18, "ghost", 0], ["10:12", 1468, 486, 18, "ghost", 0], ["周四", 1604, 394, 36, "orange", -2],
+    ["初稿", 114, 594, 28, "", 1], ["最终稿", 326, 626, 34, "orange", -1], ["同一个人", 596, 584, 22, "ghost", 1],
+    ["两个日期", 822, 638, 26, "", -1], ["先别开工", 1092, 594, 32, "orange", 1], ["谁来写？", 1390, 624, 28, "ghost", -1],
+    ["没有原文", 1588, 580, 26, "orange", 2], ["截图", 160, 744, 22, "ghost", 0], ["相册", 330, 782, 22, "ghost", 0],
+    ["已发送", 512, 742, 22, "lime", -1], ["未读", 690, 790, 20, "ghost", 1], ["最后一次", 892, 748, 30, "orange", -1],
+    ["没人负责", 1140, 770, 30, "orange", 1], ["怎么办", 1370, 742, 26, "ghost", -1], ["...", 1592, 774, 36, "", 0],
+    ["收到", 176, 888, 22, "ghost", 1], ["好的", 362, 912, 22, "ghost", -1], ["周二?", 582, 864, 28, "orange", 0],
+    ["周四。", 800, 916, 34, "orange", -1], ["没有人", 1030, 872, 26, "ghost", 1], ["没有日期", 1240, 912, 26, "orange", -1],
+    ["只有聊天", 1500, 866, 30, "", 1]
+  ];
+  const chaos = $("#chaos");
+  fragments.forEach(([text, x, y, size, cls, rot], i) => {
+    const el = document.createElement("div");
+    el.className = "chaos-item " + cls;
+    el.textContent = text;
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+    el.style.fontSize = size + "px";
+    el.style.transform = `rotate(${rot}deg)`;
+    chaos.appendChild(el);
+    tl.fromTo(el, { opacity: 0, scale: .78, filter: "blur(8px)" }, { opacity: cls === "ghost" ? .52 : .92, scale: 1, filter: "blur(0px)", duration: .22, ease: "power2.out" }, .06 + i * .045)
+      .to(el, { x: (i % 2 ? -1 : 1) * (8 + (i % 5) * 5), y: (i % 3 - 1) * 10, rotation: rot * 2.2, duration: .5, ease: "sine.inOut" }, .08 + i * .045);
+  });
+  tl.to("#noise-title", { opacity: 1, scale: 1, duration: .45 }, 2.38)
+    .to("#noise-line", { opacity: 1, scaleX: 1, duration: .45 }, 2.5)
+    .to("#noise-caption", { opacity: 1, duration: .3 }, 2.62)
+    .to(".chaos-item", { opacity: 0, scale: .12, y: 360, filter: "blur(10px)", duration: .62, stagger: { amount: .18, from: "random" }, ease: "power3.in" }, 2.86)
+    .to("#noise-title", { opacity: 0, scale: 1.12, duration: .35 }, 3.17)
+    .to("#noise-line", { opacity: 0, duration: .2 }, 3.18)
+    .to("#noise-caption", { opacity: 0, duration: .2 }, 3.1)
+    .to("#wipe", { width: 1920, duration: .38, ease: "power4.inOut" }, 3.2)
+    .set("#s-noise", { display: "none" }, 3.7)
+    .to("#wipe", { backgroundColor: "#f5f1e8", duration: .01 }, 3.58)
+    .to("#wipe", { opacity: 0, duration: .28, ease: "power2.out" }, 3.72)
+    .set("#wipe", { opacity: 0 }, 4.04);
+
+  // 04–12 — the phone enters with the real H5 import flow.
+  tl.addLabel("scene:import", 4)
+    .to("#s-import", { opacity: 1, duration: .2 }, 3.98)
+    .fromTo("#phone", { opacity: 0, y: 92, rotate: 2.5, scale: .93 }, { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 1.35, ease: "expo.out" }, 4.12)
+    .to(".brand", { opacity: 1, duration: .4 }, 4.2)
+    .to("#ch-import", { opacity: 1, duration: .35 }, 4.3)
+    .fromTo("#s-import .eyebrow", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .55 }, 4.3)
+    .fromTo("#s-import h1", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 1.05, ease: "expo.out" }, 4.35)
+    .fromTo("#s-import .cn", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: .7 }, 4.9)
+    .fromTo("#s-import p", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .7 }, 5.15)
+    .fromTo("#s-import .micro", { opacity: 0 }, { opacity: 1, duration: .5 }, 5.5)
+    .fromTo(".hud.a", { opacity: 0 }, { opacity: 1, duration: .4 }, 6.0)
+    .to("#phone", { x: -26, y: -8, scale: 1.018, duration: 3.8, ease: "sine.inOut" }, 5.6)
+    .to("#phone", { x: -14, y: 4, scale: 1.006, duration: 3.4, ease: "sine.inOut" }, 8.8)
+    .fromTo("#phone-screen-scan", { y: -10 }, { y: 920, duration: 4.2, ease: "none", repeat: 7 }, 4.4)
+    .to("#phone", { y: -5, duration: 4.2, ease: "sine.inOut" }, 12.4)
+    .to("#phone", { y: 5, duration: 4.2, ease: "sine.inOut" }, 16.6)
+    .to("#phone", { y: -4, duration: 4.0, ease: "sine.inOut" }, 24.2)
+    .to("#phone", { y: 4, duration: 4.0, ease: "sine.inOut" }, 28.2)
+    .fromTo("#progress i", { scaleX: 0 }, { scaleX: 1, duration: 39.8, ease: "none" }, 0.0)
+    .to("#progress", { opacity: 0, duration: .25 }, 39.85)
+    .to("#s-import .copy", { opacity: 0, x: -34, duration: .5, ease: "power2.in" }, 11.35)
+    .to("#s-import", { opacity: 0, duration: .3 }, 11.55)
+    .to("#ch-import", { opacity: 0, duration: .25 }, 11.55);
+
+  // 12–20 — structure: messages become objects.
+  tl.addLabel("scene:structure", 12)
+    .to("#phone", { x: -8, duration: 1.2, ease: "power2.inOut" }, 12)
+    .to("#ch-structure", { opacity: 1, duration: .35 }, 12.1)
+    .to("#s-structure", { opacity: 1, duration: .25 }, 12)
+    .fromTo("#s-structure .eyebrow", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .45 }, 12.15)
+    .fromTo("#s-structure h1", { opacity: 0, y: 62 }, { opacity: 1, y: 0, duration: .95, ease: "expo.out" }, 12.2)
+    .fromTo("#s-structure .cn", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .6 }, 12.7)
+    .fromTo("#s-structure p", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .65 }, 12.9)
+    .fromTo(".struct-card", { opacity: 0, y: 38 }, { opacity: 1, y: 0, duration: .6, stagger: .12, ease: "expo.out" }, 13.15)
+    .to(".struct-card .bar", { width: 748, duration: .5, stagger: .12, ease: "power2.inOut" }, 13.4)
+    .to(".struct-card", { y: -10, duration: .6, stagger: .06, ease: "sine.inOut" }, 20.1)
+    .to(".struct-card", { y: 0, duration: .6, stagger: .06, ease: "sine.inOut" }, 21.0)
+    .to("#ch-structure", { opacity: 0, duration: .25 }, 23.45)
+    .to("#s-structure", { opacity: 0, x: -26, duration: .45, ease: "power2.in" }, 23.5)
+    .to("#phone", { x: 34, duration: 1.1, ease: "power2.inOut" }, 23.55);
+
+  // 20–32 — friction and human correction.
+  tl.addLabel("scene:friction", 24)
+    .to("#dark", { opacity: 1, duration: .55 }, 23.55)
+    .to("#s-risk", { opacity: 1, duration: .3 }, 23.9)
+    .to(".meta-left, .meta-right", { color: "rgba(245,241,232,.65)", duration: .3 }, 23.9)
+    .to("#ch-risk", { opacity: 1, duration: .35 }, 24.0)
+    .fromTo("#s-risk .eyebrow", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .45 }, 24.05)
+    .fromTo("#s-risk h1", { opacity: 0, y: 75 }, { opacity: 1, y: 0, duration: 1.0, ease: "expo.out" }, 24.1)
+    .fromTo("#s-risk .cn", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .6 }, 24.6)
+    .fromTo("#s-risk p", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .65 }, 24.85)
+    .fromTo(".risk-tag", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .4, stagger: .08 }, 25.0)
+    .fromTo("#s-risk .quote", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .65 }, 26.0)
+    .fromTo("#human-check", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .65 }, 29.0)
+    .to("#human-check .line", { width: 180, duration: .45 }, 29.3)
+    .to("#ch-risk", { opacity: 0, duration: .25 }, 31.5)
+    .to("#s-risk", { opacity: 0, y: -22, duration: .4, ease: "power2.in" }, 31.55)
+    .to("#dark", { opacity: 0, duration: .55 }, 31.6)
+    .to(".meta-left, .meta-right", { color: "rgba(25,27,24,.48)", duration: .3 }, 31.7)
+    .to("#phone", { x: -10, duration: 1.0, ease: "power2.inOut" }, 31.6);
+
+  // 32–40 — the real task list, a real completion.
+  tl.addLabel("scene:tasks", 32)
+    .to("#s-tasks", { opacity: 1, duration: .3 }, 31.95)
+    .to("#ch-tasks", { opacity: 1, duration: .35 }, 32.1)
+    .fromTo("#s-tasks .eyebrow", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: .45 }, 32.1)
+    .fromTo("#s-tasks h1", { opacity: 0, y: 62 }, { opacity: 1, y: 0, duration: .95, ease: "expo.out" }, 32.15)
+    .fromTo("#s-tasks .cn", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .6 }, 32.6)
+    .fromTo("#s-tasks p", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .65 }, 32.8)
+    .fromTo("#done-count", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .65, ease: "expo.out" }, 35.05)
+    .fromTo(".task-line", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .4, stagger: .1 }, 35.15)
+    .to("#task-progress i", { width: 270, duration: .55, ease: "expo.out" }, 35.6)
+    .to("#persist", { opacity: 1, duration: .4 }, 35.95)
+    .to("#ch-tasks", { opacity: 0, duration: .25 }, 39.5)
+    .to("#s-tasks", { opacity: 0, y: -22, duration: .4, ease: "power2.in" }, 39.55)
+    .to("#phone", { opacity: 0, x: 70, scale: .96, duration: .55, ease: "power2.in" }, 39.55)
+    .to(".brand", { opacity: 0, duration: .3 }, 39.6);
+
+  // 40–45 — the end card; the last 2.6 s do not move.
+  tl.addLabel("scene:end", 40)
+    .to("#dark", { opacity: 1, duration: .2 }, 39.9)
+    .to("#s-end", { opacity: 1, duration: .25 }, 39.95)
+    .fromTo("#end-inner .eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .45 }, 40.05)
+    .fromTo("#end-word", { opacity: 0, y: 85 }, { opacity: 1, y: 0, duration: 1.05, ease: "expo.out" }, 40.1)
+    .fromTo("#end-cn", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: .75 }, 40.45)
+    .fromTo("#end-tag", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: .55 }, 40.85)
+    .to("#end-rule", { width: 680, duration: .55, ease: "expo.out" }, 41.0)
+    .fromTo("#end-meta", { opacity: 0 }, { opacity: 1, duration: .5 }, 41.25)
+    .fromTo("#end-index", { opacity: 0 }, { opacity: 1, duration: .5 }, 41.25)
+    .to("#ch-end", { opacity: 1, duration: .35 }, 41.05)
+    .to({}, { duration: 3.1 }, 41.9);
+
+  // Music direction and gesture hits. `om render` regenerates the soundtrack.
+  OM.music({ product: "devtool", style: "pulse", bpm: 112, brand: "FlowBack", drop: "friction", ending: "button", energy: { noise: .9, import: .45, structure: .62, friction: .85, tasks: .7, end: .55 } });
+  OM.sfx("glitch", .08, { gain: .35 });
+  OM.sfx("type", .28, { dur: 2.2, gain: .35 });
+  OM.sfx("impact", 4.12, { gain: .55 });
+  OM.sfx("whoosh", 11.85, { gain: .35 });
+  OM.sfx("thud", 13.15, { gain: .45 });
+  OM.sfx("tick", 13.35, { gain: .2, note: 2 });
+  OM.sfx("tick", 13.55, { gain: .2, note: 3 });
+  OM.sfx("tick", 13.75, { gain: .2, note: 4 });
+  OM.sfx("impact", 23.55, { gain: .55 });
+  OM.sfx("stamp", 26.0, { gain: .4 });
+  OM.sfx("draw", 29.3, { dur: .45, gain: .28 });
+  OM.sfx("whoosh", 31.6, { gain: .35 });
+  OM.sfx("ding", 33.8, { gain: .45, note: 5 });
+  OM.sfx("chime", 40.1, { gain: .5 });
+  OM.sfx("subdrop", 40.1, { dur: 2.8, gain: .4 });
+
+  window.__timelines["flowback-r4"] = tl;
+</script>
+</body>
+</html>
