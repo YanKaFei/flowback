@@ -165,7 +165,7 @@ node "$OM" render videos/r4/source/flowback-film --workers 4
 
 # Typography film — RuiC Motion
 cd videos/r4/source/ruic-type
-PYTHONPATH="<WORKSPACE>/flowback/videos/r4/source/pydeps:$PWD" \
+PYTHONPATH="$PWD/.pydeps:$PWD" \
   python3 -m ruic_type.build --workers 4
 ```
 
