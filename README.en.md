@@ -106,6 +106,16 @@ CHAT  →  AI DRAFT  →  HUMAN REVIEW  →  TASKS  →  STATE
 
 Both films share one visual system: warm paper, graphite, signal green and a restrained orange. The 45s film places the real H5 flow inside a phone composition; the 15s typography film is fully programmatic, with exact Chinese brand lettering and `FlowBack` set in real type — never guessed by a video model.
 
+### Archive
+
+**Dynamic Type Refactor** · 15.08s · 2560×1440 · 24fps · H.264/AAC
+
+<a href="videos/动态字体重构.mp4"><img src="docs/assets/dynamic-type-cover.png" width="640" alt="Dynamic Type Refactor"></a>
+
+[▶ Watch / download Dynamic Type Refactor](videos/动态字体重构.mp4)
+
+An additional kinetic-type piece supplied separately. It keeps its original filename and is not part of the R4 acceptance pair.
+
 ### Architecture
 
 ```mermaid
