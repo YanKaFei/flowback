@@ -27,11 +27,11 @@ RuiC Motion engine (MIT) copied into `mg/`; the film is `ruic_type/build.py` and
 - bundled Noto Sans SC 900/500 (OFL 1.1, from Huashu Motion) for Chinese
 
 ```bash
-PYTHONPATH="<WORKSPACE>/flowback/videos/r4/source/pydeps:$PWD" \
+PYTHONPATH="$PWD/.pydeps:$PWD" \
   python3 -m ruic_type.build --at 0.2,5.8,10.2,13.2,14.8
-PYTHONPATH="<WORKSPACE>/flowback/videos/r4/source/pydeps:$PWD" \
+PYTHONPATH="$PWD/.pydeps:$PWD" \
   python3 -m ruic_type.build --audio-only
-PYTHONPATH="<WORKSPACE>/flowback/videos/r4/source/pydeps:$PWD" \
+PYTHONPATH="$PWD/.pydeps:$PWD" \
   python3 -m ruic_type.build --workers 4
 ```
 
