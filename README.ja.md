@@ -25,6 +25,9 @@
   <strong>日本語</strong>
 </p>
 
+<p align="center"><a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Demo_45s.mp4"><strong>▶ 45 秒本編</strong></a> &nbsp;·&nbsp; <a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Typography_15s_web.mp4"><strong>▶ 15 秒タイポグラフィ</strong></a> &nbsp;·&nbsp; <a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/%E5%8A%A8%E6%80%81%E5%AD%97%E4%BD%93%E9%87%8D%E6%9E%84.mp4"><strong>▶ 動的タイポグラフィ再構成</strong></a></p>
+
+
 ---
 
 > **会話が終わる場所から、仕事が始まる。**
@@ -96,13 +99,13 @@
 
 [![FlowBack 45s film](docs/assets/main-contact-sheet.jpg)](videos/r4/FlowBack_Demo_45s.mp4)
 
-[▶ 45 秒本編を再生 / ダウンロード](videos/r4/FlowBack_Demo_45s.mp4) · [制作レポート](videos/r4/R4-PRODUCTION-REPORT.md) · [ストーリーボード](videos/r4/storyboard/storyboard.md)
+[▶ 45 秒本編を再生](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Demo_45s.mp4) · [MP4 をダウンロード](videos/r4/FlowBack_Demo_45s.mp4) · [制作レポート](videos/r4/R4-PRODUCTION-REPORT.md) · [ストーリーボード](videos/r4/storyboard/storyboard.md)
 
 **CHAOS → ORDER** · 15 秒 · 純粋なタイポグラフィ / プログラム的モーション · 1920×1080 · 30fps
 
 [![CHAOS → ORDER](docs/assets/typography-cover.png)](videos/r4/FlowBack_Typography_15s.mp4)
 
-[▶ 15 秒タイポグラフィ作品を再生 / ダウンロード](videos/r4/FlowBack_Typography_15s.mp4)
+[▶ 15 秒作品を再生](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Typography_15s_web.mp4) · [マスターをダウンロード](videos/r4/FlowBack_Typography_15s.mp4)
 
 2 本は同じ視覚システムを共有します。暖かい紙白、グラファイト、シグナルグリーン、少量のオレンジ。45 秒本編は実際の H5 フローをスマートフォンの構図に埋め込み、15 秒作品は完全にプログラムで描画。中国語ブランド文字と `FlowBack` は正確なフォントで組み、生成モデルに字形を推測させていません。
 
@@ -112,7 +115,7 @@
 
 <a href="videos/动态字体重构.mp4"><img src="docs/assets/dynamic-type-cover.png" width="640" alt="動的タイポグラフィ再構成"></a>
 
-[▶ 「動的タイポグラフィ再構成」を再生 / ダウンロード](videos/动态字体重构.mp4)
+[▶ 「動的タイポグラフィ再構成」を再生](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/%E5%8A%A8%E6%80%81%E5%AD%97%E4%BD%93%E9%87%8D%E6%9E%84.mp4) · [MP4 をダウンロード](videos/动态字体重构.mp4)
 
 別途提供された追加のキネティック・タイポグラフィ作品です。元のファイル名のまま収録し、R4 の 2 本の検収対象には含めません。
 

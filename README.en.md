@@ -25,6 +25,9 @@
   <a href="README.ja.md">日本語</a>
 </p>
 
+<p align="center"><a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Demo_45s.mp4"><strong>▶ 45s film</strong></a> &nbsp;·&nbsp; <a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Typography_15s_web.mp4"><strong>▶ 15s typography</strong></a> &nbsp;·&nbsp; <a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/%E5%8A%A8%E6%80%81%E5%AD%97%E4%BD%93%E9%87%8D%E6%9E%84.mp4"><strong>▶ Dynamic Type Refactor</strong></a></p>
+
+
 ---
 
 > **Where the chat ends, the work begins.**
@@ -96,13 +99,13 @@ CHAT  →  AI DRAFT  →  HUMAN REVIEW  →  TASKS  →  STATE
 
 [![FlowBack 45s film](docs/assets/main-contact-sheet.jpg)](videos/r4/FlowBack_Demo_45s.mp4)
 
-[▶ Watch / download the 45s film](videos/r4/FlowBack_Demo_45s.mp4) · [Production report](videos/r4/R4-PRODUCTION-REPORT.md) · [Storyboard](videos/r4/storyboard/storyboard.md)
+[▶ Watch the 45s film](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Demo_45s.mp4) · [Download MP4](videos/r4/FlowBack_Demo_45s.mp4) · [Production report](videos/r4/R4-PRODUCTION-REPORT.md) · [Storyboard](videos/r4/storyboard/storyboard.md)
 
 **CHAOS → ORDER** · 15s · pure typography / programmatic motion · 1920×1080 · 30fps
 
 [![CHAOS → ORDER](docs/assets/typography-cover.png)](videos/r4/FlowBack_Typography_15s.mp4)
 
-[▶ Watch / download the 15s typography film](videos/r4/FlowBack_Typography_15s.mp4)
+[▶ Watch the 15s typography film](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Typography_15s_web.mp4) · [Download master](videos/r4/FlowBack_Typography_15s.mp4)
 
 Both films share one visual system: warm paper, graphite, signal green and a restrained orange. The 45s film places the real H5 flow inside a phone composition; the 15s typography film is fully programmatic, with exact Chinese brand lettering and `FlowBack` set in real type — never guessed by a video model.
 
@@ -112,7 +115,7 @@ Both films share one visual system: warm paper, graphite, signal green and a res
 
 <a href="videos/动态字体重构.mp4"><img src="docs/assets/dynamic-type-cover.png" width="640" alt="Dynamic Type Refactor"></a>
 
-[▶ Watch / download Dynamic Type Refactor](videos/动态字体重构.mp4)
+[▶ Watch Dynamic Type Refactor](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/%E5%8A%A8%E6%80%81%E5%AD%97%E4%BD%93%E9%87%8D%E6%9E%84.mp4) · [Download MP4](videos/动态字体重构.mp4)
 
 An additional kinetic-type piece supplied separately. It keeps its original filename and is not part of the R4 acceptance pair.
 

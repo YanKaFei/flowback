@@ -25,6 +25,9 @@
   <a href="README.ja.md">日本語</a>
 </p>
 
+<p align="center"><a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Demo_45s.mp4"><strong>▶ 45 秒主片</strong></a> &nbsp;·&nbsp; <a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Typography_15s_web.mp4"><strong>▶ 15 秒字体片</strong></a> &nbsp;·&nbsp; <a href="https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/%E5%8A%A8%E6%80%81%E5%AD%97%E4%BD%93%E9%87%8D%E6%9E%84.mp4"><strong>▶ 动态字体重构</strong></a></p>
+
+
 ---
 
 > **聊天结束的地方，就是工作开始的地方。**
@@ -96,13 +99,13 @@
 
 [![FlowBack 45s film](docs/assets/main-contact-sheet.jpg)](videos/r4/FlowBack_Demo_45s.mp4)
 
-[▶ 播放 / 下载 45s 主片](videos/r4/FlowBack_Demo_45s.mp4) · [完整制作报告](videos/r4/R4-PRODUCTION-REPORT.md) · [分镜表](videos/r4/storyboard/storyboard.md)
+[▶ 直接播放 45s 主片](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Demo_45s.mp4) · [下载 MP4](videos/r4/FlowBack_Demo_45s.mp4) · [完整制作报告](videos/r4/R4-PRODUCTION-REPORT.md) · [分镜表](videos/r4/storyboard/storyboard.md)
 
 **CHAOS → ORDER** · 15 秒 · 纯字体 / 程序化动态图形 · 1920×1080 · 30fps
 
 [![CHAOS → ORDER](docs/assets/typography-cover.png)](videos/r4/FlowBack_Typography_15s.mp4)
 
-[▶ 播放 / 下载 15s 字体片](videos/r4/FlowBack_Typography_15s.mp4)
+[▶ 直接播放 15s 字体片](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/r4/FlowBack_Typography_15s_web.mp4) · [下载母版](videos/r4/FlowBack_Typography_15s.mp4)
 
 两条片子使用同一套视觉系统：暖白、石墨黑、信号绿、少量橙色。45s 主片把真实 H5 流程嵌入手机构图；15s 字体片由 RuiC 程序化渲染，中文品牌字与 `FlowBack` 均为精确字体排版，不依赖视频模型猜字形。
 
@@ -112,7 +115,7 @@
 
 <a href="videos/动态字体重构.mp4"><img src="docs/assets/dynamic-type-cover.png" width="640" alt="动态字体重构"></a>
 
-[▶ 播放 / 下载《动态字体重构》](videos/动态字体重构.mp4)
+[▶ 直接播放《动态字体重构》](https://cdn.jsdelivr.net/gh/YanKaFei/flowback@main/videos/%E5%8A%A8%E6%80%81%E5%AD%97%E4%BD%93%E9%87%8D%E6%9E%84.mp4) · [下载 MP4](videos/动态字体重构.mp4)
 
 桌面提供的额外动态字体作品，保留原始文件名；不计入 R4 两支成片的规格与验收。
 
