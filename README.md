@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="docs/assets/hero.png" alt="FlowBack — From Noise to Action" width="100%" />
+  <img src="docs/assets/hero.png" alt="FlowBack — 从噪声到行动" width="100%" />
 </p>
 
 <h1 align="center">FlowBack · 回响</h1>
 
 <p align="center">
   <strong>把一段聊天，变成可审核、可执行、可追溯的任务。</strong><br/>
-  <sub>From noise to action — with a human in the loop.</sub>
+  <sub>从噪声到行动，人始终在回路中。</sub>
 </p>
 
 <p align="center">
@@ -20,16 +20,12 @@
 </p>
 
 <p align="center">
-  <a href="#中文">中文</a> ·
-  <a href="#english">English</a> ·
-  <a href="#日本語">日本語</a>
+  <strong>中文</strong> ·
+  <a href="README.en.md">English</a> ·
+  <a href="README.ja.md">日本語</a>
 </p>
 
 ---
-
-<a id="中文"></a>
-
-## 中文
 
 > **聊天结束的地方，就是工作开始的地方。**
 >
@@ -38,8 +34,8 @@
 这不是一个“把聊天总结一下”的 Demo。它是一条完整的、可审计的工作流：
 
 ```text
-CHAT  →  DRAFT  →  HUMAN REVIEW  →  TASKS  →  STATE
-         AI only       you decide      SQLite     refresh-safe
+聊天  →  AI 草稿  →  人工审核  →  任务  →  状态
+        只生成候选      你来决定      SQLite     刷新仍存在
 ```
 
 ### 为什么是 FlowBack
@@ -48,7 +44,7 @@ CHAT  →  DRAFT  →  HUMAN REVIEW  →  TASKS  →  STATE
 |---|---|
 | 输出一段看起来合理的文字 | 输出带来源引用的任务对象 |
 | 直接覆盖或写入数据 | 只生成候选，确认后才入库 |
-| 漏掉“没人负责”这类空白 | 把 owner gap、时间冲突、未确认决策变成可见风险 |
+| 漏掉“没人负责”这类空白 | 把责任空缺、时间冲突、未确认决策变成可见风险 |
 | 刷新即消失的演示状态 | SQLite + task events，刷新后状态仍然存在 |
 | 只能在一个页面里看 | Next.js 管理端 + Taro 移动端，共用同一套 API |
 
@@ -57,30 +53,30 @@ CHAT  →  DRAFT  →  HUMAN REVIEW  →  TASKS  →  STATE
 | 证据 | 结果 |
 |---|---|
 | DeepSeek 真实调用 | `deepseek-flash`，思考模式关闭，JSON 输出，服务端 Key |
-| R2 真实验收 | 7 / 7 fixtures PASS；任务召回、精确率、F1 **100%**；引用核验 **100%** |
+| R2 真实验收 | 7 / 7 组夹具通过；任务召回、精确率、F1 **100%**；引用核验 **100%** |
 | 回归测试 | **11 个测试文件 / 78 tests** 通过 |
 | 移动端真实链路 | 截图导入 → DeepSeek → 审核修改 → 确认 → 任务完成 → 刷新持久化 |
-| 微信小程序 | `build:weapp` 构建通过；**原生真机仍 PENDING**（AppID / HTTPS 域名未配置） |
+| 微信小程序 | `build:weapp` 构建通过；**原生真机仍待完成**（AppID / HTTPS 域名未配置） |
 | R4 影像 | 45s 主片 + 15s 纯字体片，均已实际渲染并通过 FFprobe |
 
 > [!IMPORTANT]
-> **边界必须说清楚：** 视频和 README 中的移动端画面来自 **Taro H5 预览与真实服务链路**，不是微信原生真机录屏。H5 截图不能替代微信真机证据；R3 的微信体验版仍是 PENDING。
+> **边界必须说清楚：** 视频和 README 中的移动端画面来自 **Taro H5 预览与真实服务链路**，不是微信原生真机录屏。H5 截图不能替代微信真机证据；R3 的微信体验版仍待完成。
 
 ### 产品，四个动作
 
 <table>
 <tr>
-<td width="25%" valign="top"><strong>01 · IMPORT</strong><br/><sub>把混乱带进来</sub><br/><br/>上传最多 4 张截图，或粘贴聊天文字。截图只用于本次整理，删除项目会一起删除。</td>
-<td width="25%" valign="top"><strong>02 · DRAFT</strong><br/><sub>让模型先做脏活</sub><br/><br/>DeepSeek 抽取任务、负责人、日期与原文引用；没有原文依据的字段会被降级或标为待确认。</td>
-<td width="25%" valign="top"><strong>03 · REVIEW</strong><br/><sub>人保留最后决定权</sub><br/><br/>逐条修改负责人/日期/状态。时间倒挂、无人负责、未确认决策都在这里出现。</td>
-<td width="25%" valign="top"><strong>04 · ACT</strong><br/><sub>确认之后才发生</sub><br/><br/>任务进入 SQLite 看板；勾选完成、解决/重开风险，刷新后状态仍在。</td>
+<td width="25%" valign="top"><strong>01 · 导入</strong><br/><sub>把混乱带进来</sub><br/><br/>上传最多 4 张截图，或粘贴聊天文字。截图只用于本次整理，删除项目会一起删除。</td>
+<td width="25%" valign="top"><strong>02 · 草稿</strong><br/><sub>让模型先做脏活</sub><br/><br/>DeepSeek 抽取任务、负责人、日期与原文引用；没有原文依据的字段会被降级或标为待确认。</td>
+<td width="25%" valign="top"><strong>03 · 审核</strong><br/><sub>人保留最后决定权</sub><br/><br/>逐条修改负责人/日期/状态。时间倒挂、无人负责、未确认决策都在这里出现。</td>
+<td width="25%" valign="top"><strong>04 · 执行</strong><br/><sub>确认之后才发生</sub><br/><br/>任务进入 SQLite 看板；勾选完成、解决/重开风险，刷新后状态仍在。</td>
 </tr>
 </table>
 
 ### 界面
 
 <p align="center">
-  <em>Taro H5 preview · 390px · 真实截图导入与审核数据</em>
+  <em>Taro H5 预览 · 390px · 真实截图导入与审核数据</em>
 </p>
 
 <table align="center">
@@ -92,17 +88,17 @@ CHAT  →  DRAFT  →  HUMAN REVIEW  →  TASKS  →  STATE
 </tr>
 </table>
 
-<p align="center"><sub>H5 preview, not a WeChat-native device capture. 真机验证仍需 AppID 与可信 HTTPS 域名。</sub></p>
+<p align="center"><sub>H5 预览，不是微信原生真机录屏。真机验证仍需 AppID 与可信 HTTPS 域名。</sub></p>
 
-### R4 Motion Films
+### R4 影像
 
-**FlowBack — From Noise to Action** · 45s · 1920×1080 · 30fps · H.264/AAC
+**FlowBack — From Noise to Action** · 45 秒 · 1920×1080 · 30fps · H.264/AAC
 
 [![FlowBack 45s film](docs/assets/main-contact-sheet.jpg)](videos/r4/FlowBack_Demo_45s.mp4)
 
 [▶ 播放 / 下载 45s 主片](videos/r4/FlowBack_Demo_45s.mp4) · [完整制作报告](videos/r4/R4-PRODUCTION-REPORT.md) · [分镜表](videos/r4/storyboard/storyboard.md)
 
-**CHAOS → ORDER** · 15s · 纯字体 / 程序化动态图形 · 1920×1080 · 30fps
+**CHAOS → ORDER** · 15 秒 · 纯字体 / 程序化动态图形 · 1920×1080 · 30fps
 
 [![CHAOS → ORDER](docs/assets/typography-cover.png)](videos/r4/FlowBack_Typography_15s.mp4)
 
@@ -164,10 +160,10 @@ npm run dev:h5          # 4318，仅移动端浏览器预览
 
 | 项 | 状态 |
 |---|---|
-| 真实 DeepSeek + H5 闭环 | **PASS** |
-| 微信 `build:weapp` | **PASS** |
-| 微信原生真机 | **PENDING** — 无 AppID / 可信 HTTPS / request 合法域名 |
-| 体验版分享 | **NOT READY** |
+| 真实 DeepSeek + H5 闭环 | **通过** |
+| 微信 `build:weapp` | **通过** |
+| 微信原生真机 | **待完成** — 无 AppID / 可信 HTTPS / request 合法域名 |
+| 体验版分享 | **未就绪** |
 
 外部步骤：配置 `WECHAT_APP_ID` / `WECHAT_APP_SECRET`；部署可信 HTTPS；把域名加入微信 request 合法域名；完成隐私保护指引；微信开发者工具真机验收。
 
@@ -183,7 +179,7 @@ npm run dev:h5          # 4318，仅移动端浏览器预览
 
 ### 文档
 
-- [R3 微信真机报告](acceptance/R3-WECHAT-DEVICE.md) — 安全、身份隔离、PENDING 项
+- [R3 微信真机报告](acceptance/R3-WECHAT-DEVICE.md) — 安全、身份隔离、待完成项
 - [R2 真实验收](acceptance/REPORT.md) — 7/7 fixtures、引用核验、真实调用
 - [R4 制作报告](videos/r4/R4-PRODUCTION-REPORT.md) — 工具、代码、FFprobe、QA
 - [移动端验收](acceptance/MOBILE-FINAL.md)
@@ -193,174 +189,15 @@ npm run dev:h5          # 4318，仅移动端浏览器预览
 
 **AI 可以提出任务；只有人可以决定它是否成为工作。**
 
----
-
-<a id="english"></a>
-
-<details>
-<summary><strong>English — FlowBack, from noise to action</strong></summary>
-
-<br/>
-
-**FlowBack** turns chat text or screenshots into **reviewable, executable, traceable tasks**. DeepSeek proposes tasks, owners, dates and verbatim source quotes; a human confirms every change before anything is written to SQLite. FlowBack also surfaces the gaps a summary hides: **owner gaps, date conflicts, missing due dates and unconfirmed decisions**.
-
-### The loop
-
-```text
-CHAT  →  AI DRAFT  →  HUMAN REVIEW  →  TASK BOARD  →  SQLITE STATE
-```
-
-- **Human-in-the-loop by default** — the model only creates a draft.
-- **Source-first** — every task carries its quote; unsupported fields are downgraded.
-- **Risk-aware** — owner gaps and conflicting deadlines are first-class objects, not warnings buried in prose.
-- **Durable** — task state and task events live in SQLite; refresh does not erase the work.
-- **Two clients, one API** — Next.js admin + Taro 4 mobile client.
-
-### Real evidence
-
-| Check | Result |
-|---|---|
-| DeepSeek | `deepseek-flash`, JSON mode, server-side key |
-| R2 real fixtures | **7/7 PASS**, task F1 **100%**, quote verification **100%** |
-| Tests | **11 files / 78 tests** passing |
-| Mobile flow | real screenshot → DeepSeek → review edit → confirm → complete → refresh |
-| WeChat native | **PENDING** — no AppID / trusted HTTPS domain yet |
-| R4 films | 45s main + 15s typography, both actually rendered |
-
-> **Evidence boundary:** the mobile footage is a real **Taro H5 preview flow**, not a WeChat-native device recording. H5 is not used as a substitute for device evidence.
-
-### Screens
-
-<p align="center">
-  <img src="docs/assets/app-import.png" width="210" alt="Import">
-  <img src="docs/assets/app-review.png" width="210" alt="Review">
-  <img src="docs/assets/app-risk.png" width="210" alt="Risk and source">
-  <img src="docs/assets/app-tasks.png" width="210" alt="Tasks">
-</p>
-
-### R4 films
-
-- [FlowBack — From Noise to Action · 45s](videos/r4/FlowBack_Demo_45s.mp4)
-- [CHAOS → ORDER · 15s](videos/r4/FlowBack_Typography_15s.mp4)
-- [Production report](videos/r4/R4-PRODUCTION-REPORT.md)
-
-Made with **Huashu Motion** (edit/render), **RuiC Motion** (programmatic typography/audio) and the **Huashu Art Motion** kinetic-type grammar. All three are MIT; bundled fonts are OFL 1.1. No commercial music.
-
-### Quick start
-
-```bash
-npm install
-cp .env.example .env.local
-# DEEPSEEK_API_KEY=...
-# FLOWBACK_LOCAL_TOKEN=<openssl rand -base64 32>
-# FLOWBACK_DEV_AUTH=1   # local only
-npm run dev
-npm run check           # 78 tests + build
-```
-
-### Architecture
-
-```text
-Next.js 15 API ── DeepSeek deepseek-flash
-      │                   │
-      │            review draft (tasks, owners, dates, quotes)
-      │                   │
-      └──────────── human confirm ────────────┐
-                                              ▼
-                                       SQLite + task events
-                                              │
-                                     Taro 4 mobile client
-```
-
-### Status
-
-- H5 + real DeepSeek chain: **verified**.
-- WeChat native device: **PENDING** — AppID, trusted HTTPS, request domain, privacy guide, DevTools real-device run.
-- No silent DB writes; no server secret in the mini program.
-
-</details>
-
----
-
-<a id="日本語"></a>
-
-<details>
-<summary><strong>日本語 — FlowBack（回响）</strong></summary>
-
-<br/>
-
-**FlowBack（回响）** は、チャットの文章やスクリーンショットを **レビュー可能・実行可能・追跡可能なタスク** に変えるワークフローです。DeepSeek がタスク、担当者、期限、原文引用の候補を作り、**人が確認した後だけ** SQLite に書き込みます。
-
-単なる要約ツールではありません。**担当者不在、期限の矛盾、期限未定、未確認の決定** を、要約の文章ではなく独立したリスクとして見せます。
-
-### 4つのステップ
-
-| Step | What happens |
-|---|---|
-| **Import** | スクリーンショット（最大4枚）またはチャット文を投入 |
-| **Draft** | DeepSeek がタスク・担当者・日付・引用を抽出。根拠のない項目は保留/要確認に |
-| **Review** | 人が担当者・期限・状態を修正。期限逆転や担当者不在をここで確認 |
-| **Act** | 確認後に SQLite のタスクボードへ。完了・リスク解決後も状態が残る |
-
-### 実際の検証
-
-- DeepSeek `deepseek-flash`、JSON モード、サーバー側キーのみ。
-- R2 実フィクスチャ **7/7 PASS**、タスク F1 **100%**、引用検証 **100%**。
-- **11 テストファイル / 78 tests** 成功。
-- モバイルは実際の **Taro H5 プレビュー** で、スクリーンショット → AI → レビュー → 確認 → 完了 → 再読み込みまで確認。
-- 微信（WeChat）ネイティブ実機は **PENDING**。AppID、信頼された HTTPS、request 合法ドメインが未設定です。H5 画像を実機証拠の代わりにはしません。
-
-### R4 映像
-
-- [FlowBack — From Noise to Action（45秒）](videos/r4/FlowBack_Demo_45s.mp4)
-- [CHAOS → ORDER（15秒・純粋なタイポグラフィ）](videos/r4/FlowBack_Typography_15s.mp4)
-- [制作レポート](videos/r4/R4-PRODUCTION-REPORT.md)
-
-Huashu Motion（編集・レンダリング）、RuiC Motion（プログラム的タイポグラフィ・音声）、Huashu Art Motion の kinetic-type 文法を使用。3リポジトリとも MIT、同梱フォントは OFL 1.1。商用音楽は不使用です。
-
-### Architecture
-
-```text
-Next.js 15 API → DeepSeek deepseek-flash
-      ↓
-review draft（タスク / 担当者 / 日付 / 引用）
-      ↓ 人の確認
-SQLite（projects / tasks / risks / task_events）
-      ↓
-Taro 4 モバイルクライアント
-```
-
-### Status
-
-| Item | Status |
-|---|---|
-| H5 + DeepSeek 実フロー | **PASS** |
-| 微信 `build:weapp` | **PASS** |
-| 微信ネイティブ実機 | **PENDING** |
-| 体験版共有 | **NOT READY** |
-
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
-npm run check
-```
-
-> **AI はタスクを提案できる。仕事にするかどうかを決めるのは人。**
-
-</details>
-
----
-
-## Credits & licences
+## 致谢与许可
 
 - **Huashu Motion** — MIT · [github.com/alchaincyf/huashu-motion](https://github.com/alchaincyf/huashu-motion)
 - **RuiC Motion** — MIT · [github.com/HRuiCcc/RuiC-motion-reel](https://github.com/HRuiCcc/RuiC-motion-reel)
 - **Huashu Art Motion** — MIT · [github.com/alchaincyf/huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion)
-- Bundled Latin/CJK fonts — SIL OFL 1.1, as listed in each source tree.
-- FlowBack product screenshots and H5 footage are from this project; WeChat-native status is stated above.
+- 随包拉丁 / 中文字体 — SIL OFL 1.1，具体见各源码目录。
+- FlowBack 产品截图与 H5 录屏来自本项目；微信原生状态已在上方说明。
 
 <p align="center">
-  <sub>Built with <strong>DeepSeek Harness</strong> · deepseek-flash · Next.js · Taro · SQLite</sub><br/>
-  <sub>NOISE → STRUCTURE → ACTION</sub>
+  <sub>基于 <strong>DeepSeek Harness</strong> 构建 · deepseek-flash · Next.js · Taro · SQLite</sub><br/>
+  <sub>噪声 → 结构 → 行动</sub>
 </p>
